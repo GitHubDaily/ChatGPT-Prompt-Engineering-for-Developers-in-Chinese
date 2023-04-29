@@ -1,6 +1,6 @@
 1
 00:00:05,000 --> 00:00:09,000
-欢迎学习面向开发者的《ChatGPT Prompt工程》课程
+欢迎学习《面向开发者的ChatGPT Prompt工程》课程
  Welcome to this course on ChatGPT Prompt Engineering for Developers
 
 2
