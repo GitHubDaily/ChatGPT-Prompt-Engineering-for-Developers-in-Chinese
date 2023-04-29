@@ -1,21 +1,21 @@
 1
 00:00:05,000 --> 00:00:09,000
-欢迎学习《面向开发者的ChatGPT Prompt工程》课程
+欢迎学习《面向开发者的 ChatGPT Prompt 工程》课程
  Welcome to this course on ChatGPT Prompt Engineering for Developers
 
 2
 00:00:09,000 --> 00:00:14,000
-我很高兴能邀请到Isa Fulford和我一起授课
+很高兴能邀请到 Isa Fulford 和我一起授课
  I'm thrilled to have with me Iza Fulford to teach this along with me
 
 3
 00:00:14,000 --> 00:00:18,000
-她是OpenAI的技术人员之一，曾建立了流行的
+她是 OpenAI 的技术人员之一，曾建立了流行的
  She is a member of the technical staff of OpenAI and had built the popular
 
 4
 00:00:18,000 --> 00:00:23,000
-ChatGPT检索插件，她的很大一部分工作是教人们
+ChatGPT 检索插件，她大部分工作是教人们
  ChatGPT Retrieval plugin and a large part of her work has been teaching people
 
 5
@@ -25,7 +25,7 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 6
 00:00:27,000 --> 00:00:31,000
-她还为教人们提示的OpenAI手册做出了贡献
+她还为OpenAI手册做出了贡献，教会人们如何使用提示
  She's also contributed to the OpenAI cookbook that teaches people prompting
 
 7
@@ -35,42 +35,42 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 8
 00:00:32,000 --> 00:00:37,000
-我也很高兴能在这里与大家分享一些提示的最佳做法
+我也很高兴能在这里与大家分享一些提示的最佳实践
  And I'm thrilled to be here and share some prompting best practices with you all
 
 9
 00:00:37,000 --> 00:00:42,000
-在互联网上有很多关于提示的材料，有一些文章
+在互联网上有很多关于提示资料以及一些文章
  So there's been a lot of material on the internet for prompting with articles
 
 10
 00:00:42,000 --> 00:00:45,000
-比如每个人都必须知道的30个提示
+比如，每个人都必须知道的30个提示
  like 30 prompts everyone has to know
 
 11
 00:00:45,000 --> 00:00:50,000
-其中很多都集中在ChatGPT的网络用户界面上
+许多人正在使用 ChatGPT 的 Web 用户界面
  A lot of that has been focused on the ChatGPT web user interface
 
 12
 00:00:50,000 --> 00:00:54,000
-许多人使用它来完成特定的、通常是一次性的任务
+来完成特定而且通常是一次性的任务
  which many people are using to do specific and often one-off tasks
 
 13
 00:00:54,000 --> 00:01:00,000
-但我认为OEM的力量，大语言模型作为一个开发者也是如此
+但作为一名开发者，我认为OEMs和大语言模型的强大也是不可忽视的
  But I think the power of OEMs, large language models as a developer too
 
 14
 00:01:00,000 --> 00:01:04,000
-那就是使用API调用OEMs来快速建立软件应用
+那就是通过API调用OEM来快速构建软件应用程序
  that is using API calls to OEMs to quickly build software applications
 
 15
 00:01:04,000 --> 00:01:08,000
-我认为这仍然是非常不被重视的
+我认为这仍然被严重低估
  I think that is still very underappreciated
 
 16
@@ -80,22 +80,22 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 17
 00:01:12,000 --> 00:01:16,000
-一直在与许多初创公司合作，将这些技术应用于许多不同的应用
+一直在与许多初创公司、不同项目合作
  has been working with many startups on applying these technologies
 
 18
 00:01:16,000 --> 00:01:18,000
-在许多不同的应用中
+来应用这些技术
  to many different applications
 
 19
 00:01:18,000 --> 00:01:23,000
-看到OEM APIs能够让开发者快速建立什么，这很令人兴奋
+看到OEM API能够让开发者快速建立一些东西
  And it's been exciting to see what OEM APIs can enable developers
 
 20
 00:01:23,000 --> 00:01:25,000
-迅速建立
+这很令人兴奋
  to very quickly build
 
 21
@@ -110,32 +110,32 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 23
 00:01:34,000 --> 00:01:36,000
-有很多材料要涵盖
+这里会覆盖很多资料
  There's a lot of material to cover
 
 24
 00:01:36,000 --> 00:01:41,000
-首先，你将学习一些软件开发的提示性最佳实践
+首先，你将学习一些软件开发的提示词最佳实践
  First, you'll learn some prompting best practices for software development
 
 25
 00:01:41,000 --> 00:01:45,000
-然后，我们将涵盖一些常见的用例，总结，推断
+然后，我们将涵盖一些常见的用例、总结、推断
  Then we'll cover some common use cases, summarizing, inferring
 
 26
 00:01:45,000 --> 00:01:50,000
-转化、扩展，然后你将使用LLM建立一个聊天机器人
+转化、扩展，然后使用LLM建立一个聊天机器人
  transforming, expanding, and then you'll build a chatbot using an LLM
 
 27
 00:01:50,000 --> 00:01:53,000
-我们希望这将激发你对新应用的想象力
+我们希望这将激发你
  We hope that this will spark your imagination about new applications
 
 28
 00:01:53,000 --> 00:01:55,000
-你可以建立的新应用
+开发新应用的想象力
  that you can build
 
 29
@@ -150,52 +150,52 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 31
 00:02:02,000 --> 00:02:06,000
-作为基础LLM和指令学习LLM
+基础LLM和指令学习LLM
  as base LLMs and instruction-tuned LLMs
 
 32
 00:02:06,000 --> 00:02:11,000
-所以基础LLM已经被训练成基于文本训练数据来预测下一个单词
+基础LLM已经被训练成基于文本训练数据来预测下一个单词
  So base LLM has been trained to predict the next word based on text training data
 
 33
 00:02:11,000 --> 00:02:15,000
-通常在来自互联网和其他来源的大量数据上进行训练
+通常通过互联网和其他来源训练大量数据
  often trained on a large amount of data from the internet and other sources
 
 34
 00:02:15,000 --> 00:02:19,000
-来计算出下一个最可能出现的词是什么
+并计算出下一个最可能出现的词是什么
  to figure out what's the next most likely word to follow
 
 35
 00:02:19,000 --> 00:02:24,000
-因此，举例来说，如果你要输入这个提示，从前有一只独角兽
+比如，你输入这个提示："从前有一只独角兽"
  So for example, if you were to prompt this, once upon a time there was a unicorn
 
 36
 00:02:24,000 --> 00:02:28,000
-它可能完成这个，也就是说，它可能预测接下来的几个词是
+它会进行补全，并预测接下来的几个词是
  it may complete this, that is, it may predict the next several words are
 
 37
 00:02:28,000 --> 00:02:31,000
-和所有独角兽朋友一起生活在一个神奇的森林里
+"和所有独角兽朋友一起生活在一个神奇的森林里"
  that live in a magical forest with all unicorn friends
 
 38
 00:02:31,000 --> 00:02:35,000
-但是如果你用法国的首都是什么作为提示
+但是如果你是用"法国的首都是什么"作为提示
  But if you were to prompt this with what is the capital of France
 
 39
 00:02:35,000 --> 00:02:40,000
-那么根据互联网上的文章可能有
+那么根据互联网上的文章
  then based on what articles on the internet might have
 
 40
 00:02:40,000 --> 00:02:44,000
-很有可能的是，基础LLM会以下列方式完成这个任务
+很有可能是，基础LLM会以下列方式完成这个任务
  it's quite possible that the base LLM will complete this with
 
 41
@@ -205,12 +205,12 @@ ChatGPT检索插件，她的很大一部分工作是教人们
 
 42
 00:02:48,000 --> 00:02:52,000
-因为互联网上的文章很有可能是关于法国的问答题列表
+因为互联网上的文章，可能会列出
  because articles on the internet could quite plausibly be lists of quiz questions
 
 43
 00:02:52,000 --> 00:02:55,000
-关于法国的问答题列表
+关于法国的小测验问题列表
  about the country of France
 
 44
@@ -230,12 +230,12 @@ LLM的研究和实践一直在进行
 
 47
 00:03:08,000 --> 00:03:11,000
-因此，如果你要问它，法国的首都是什么？
+因此，如果你问它，法国的首都是什么？
  So if you were to ask it, what is the capital of France
 
 48
 00:03:11,000 --> 00:03:15,000
-它更有可能输出法国的首都是巴黎
+它很可能输出法国的首都是巴黎
  it's much more likely to output something like the capital of France is Paris
 
 49
@@ -245,7 +245,7 @@ LLM的研究和实践一直在进行
 
 50
 00:03:19,000 --> 00:03:23,000
-你从一个在大量文本数据上训练过的基本LLM开始
+从一个在大量文本数据上训练过的基础LLM开始
  you start off with a base LLM that's been trained on a huge amount of text data
 
 51
@@ -280,37 +280,37 @@ LLM的研究和实践一直在进行
 
 57
 00:03:47,000 --> 00:03:51,000
-诚实和无害，因此，举例来说，它们不太可能输出
+诚实且无害，因此，举例来说，它们不太可能输出
  honest, and harmless, so for example, they're less likely to output
 
 58
 00:03:51,000 --> 00:03:55,000
-有问题的文本，如有害的输出，与基础LLM相比
+那些与基础LLM相比，会出问题的文本，如有害的输出
  problematic text, such as toxic outputs, compared to base LLM
 
 59
 00:03:55,000 --> 00:03:59,000
-很多实际的使用场景已经转向了
+很多实际应用场景已经开始向
  a lot of the practical usage scenarios have been shifting
 
 60
 00:03:59,000 --> 00:04:01,000
-倾向于指令学习的LLMs
+指令学习LLM转移
  toward instruction-tuned LLMs
 
 61
 00:04:01,000 --> 00:04:04,000
-你在互联网上找到的一些最佳实践可能更适合于基础LLM
+你在互联网上找到的一些最佳实践可能更适用于基础LLM
  Some of the best practices you find on the internet may be more suited
 
 62
 00:04:04,000 --> 00:04:08,000
-的最佳实践，但对于今天的大多数实际应用来说，这些最佳实践可能更适合基础LLM
+但对于今天的大多数实际应用情况来说，它们可能不太合适
  for a base LLM, but for most practical applications today
 
 63
 00:04:08,000 --> 00:04:13,000
-我们建议大多数人多关注指令学习的LLMs
+我们建议大多数人多关注指令学习LLM
  we would recommend most people instead focus on instruction-tuned LLMs
 
 64
@@ -320,7 +320,7 @@ LLM的研究和实践一直在进行
 
 65
 00:04:17,000 --> 00:04:22,000
-和其他LLM公司的工作，变得更加安全和一致
+和其他LLM公司的工作，也将变得更加安全和一致
  and other LLM companies, becoming safer and more aligned
 
 66
@@ -335,7 +335,7 @@ LLM的研究和实践一直在进行
 
 68
 00:04:32,000 --> 00:04:36,000
-在继续之前，我只想感谢来自OpenAI
+在继续之前，我想感谢来自OpenAI
  Before moving on, I just want to acknowledge the team from OpenAI
 
 69
@@ -345,7 +345,7 @@ LLM的研究和实践一直在进行
 
 70
 00:04:39,000 --> 00:04:42,000
-的团队，他们为我和Isa将要介绍的材料做出了贡献
+他们为我和Isa将要介绍的资料做出了贡献
  that Isa and I will be presenting
 
 71
@@ -360,7 +360,7 @@ Ted Sanders，以及来自OpenAI的Lilian Wang
 
 73
 00:04:49,000 --> 00:04:53,000
-与我们一起集思广益，审核材料
+与我们一起集思广益，审核资料
  with us brainstorming materials, vetting the materials to put together
 
 74
@@ -455,7 +455,7 @@ LLM会产生你想要的东西
 
 92
 00:05:49,000 --> 00:05:52,000
-当然，如果你想象自己在问，比如
+当然，如果你想象是自己在问，比如
  And of course, if you picture yourself asking, say
 
 93
@@ -475,27 +475,27 @@ LLM会产生你想要的东西
 
 96
 00:06:02,000 --> 00:06:06,000
-那么，这甚至更好地设置了那个刚毕业的大学生的成功
+那么，这能成功让那个刚毕业的大学生
  then that even better sets up that fresh college grad for success
 
 97
 00:06:06,000 --> 00:06:09,000
-来为你完成这项任务
+更好的为你完成这项任务
  to carry out this task for you
 
 98
 00:06:09,000 --> 00:06:13,000
-因此，在接下来的视频中，你会看到关于如何明确和具体的例子
+因此，在接下来的视频中，你会看到如何清晰且明确
  So in the next video, you see examples of how to be clear
 
 99
 00:06:13,000 --> 00:06:17,000
-这是一个重要的LLM提示原则
+描述提示，这是一个重要的LLM提示准则
  and specific, which is an important principle of prompting LLMs
 
 100
 00:06:17,000 --> 00:06:21,000
-而且你还从Isa那里学到了提示的第二个原则
+而且你还将从Isa那里学到了第二个提示词准则
  And you also learn from Isa a second principle of prompting
 
 101
