@@ -1,0 +1,1010 @@
+1
+00:00:05,000 --> 00:00:07,080
+接下来的这段视频是关于推断的
+ This next video is on inferring
+
+2
+00:00:07,080 --> 00:00:09,540
+我喜欢把这些任务看成是模型将一个文本作为输入并进行某种分析
+ I like to think of these tasks where the model takes
+
+3
+00:00:09,540 --> 00:00:12,160
+作为输入的文本并进行某种分析
+ a text as input and perform some kind of analysis
+
+4
+00:00:12,160 --> 00:00:14,640
+所以这可能是提取标签
+ So this could be extracting labels
+
+5
+00:00:14,640 --> 00:00:19,280
+提取名字，理解文本的情感，诸如此类的事情
+ extracting names, kind of understanding the sentiment of a text, that kind of thing
+
+6
+00:00:19,280 --> 00:00:22,480
+因此，如果你想提取一个情感
+ So if you want to extract a sentiment
+
+7
+00:00:22,480 --> 00:00:24,240
+正面或负面的文本
+ positive or negative of a piece of text
+
+8
+00:00:24,240 --> 00:00:26,920
+在传统的机器学习工作流程中
+ in the traditional machine learning workflow
+
+9
+00:00:26,920 --> 00:00:29,680
+你必须要收集标签数据集
+ you'd have to collect the label dataset
+
+10
+00:00:29,680 --> 00:00:33,200
+训练一个模型，弄清楚如何在云端的某个地方部署这个模型
+ train a model, figure out how to deploy the model somewhere in the Cloud
+
+11
+00:00:33,200 --> 00:00:34,240
+并做出推断
+ and make inferences
+
+12
+00:00:34,240 --> 00:00:35,320
+这可以很好地工作
+ That can work pretty well
+
+13
+00:00:35,320 --> 00:00:38,560
+但要经历这个过程，实在是一件很费力的事情
+ but it was just a lot of work to go through that process
+
+14
+00:00:38,560 --> 00:00:43,680
+此外，对于每一项任务，如情感分析与提取名字或其他东西
+ Also, for every task such as sentiment versus extracting names versus something else
+
+15
+00:00:43,680 --> 00:00:46,920
+你必须训练和部署一个单独的模型
+ you have to train and deploy a separate model
+
+16
+00:00:46,920 --> 00:00:48,760
+关于大语言模型的一个好处是
+ One of the really nice things about
+
+17
+00:00:48,760 --> 00:00:51,400
+对于许多像这样的任务
+ large language model is that for many tasks like these
+
+18
+00:00:51,400 --> 00:00:56,240
+你可以只写一个提示，然后让它马上开始生成结果
+ you can just write a prompt and have it start generating results pretty much right away
+
+19
+00:00:56,240 --> 00:01:00,080
+这给应用程序的开发带来了巨大的提速
+ That gives tremendous speed in terms of application development
+
+20
+00:01:00,080 --> 00:01:02,360
+你也可以只使用一个模型
+ You can also just use one model
+
+21
+00:01:02,360 --> 00:01:05,520
+一个API来完成许多不同的任务，而不需要
+ one API to do many different tasks rather than needing to
+
+22
+00:01:05,520 --> 00:01:09,200
+弄清楚如何训练和部署许多不同的模型
+ figure out how to train and deploy a lot of different models
+
+23
+00:01:09,200 --> 00:01:13,840
+有了这些，让我们跳进代码，看看你如何利用这个优势
+ With that, let's jump into the code to see how you can take advantage of this
+
+24
+00:01:13,840 --> 00:01:16,160
+这里是我们通常的初始代码
+ Here's our usual starter code
+
+25
+00:01:16,160 --> 00:01:19,200
+运行这个
+ I'll just run that
+
+26
+00:01:19,200 --> 00:01:24,640
+我使用的最多的例子，是关于一盏灯的评论
+ The most of the example I'm going to use is a review for a lamp
+
+27
+00:01:24,640 --> 00:01:26,880
+卧室里需要一盏漂亮的灯
+ Need a nice lamp for the bedroom
+
+28
+00:01:26,880 --> 00:01:30,240
+和额外存储空间的家具，等等
+ and this one additional storage, and so on
+
+29
+00:01:31,920 --> 00:01:39,400
+让我写一个提示，对这个的情绪进行分类
+ Let me write a prompt to classify the sentiment of this
+
+30
+00:01:39,400 --> 00:01:44,520
+如果我想让系统告诉我这是什么情绪
+ If I want the system to tell me what is the sentiment
+
+31
+00:01:44,520 --> 00:01:55,720
+我可以直接写出 "以下产品评论的情感是什么"
+ I can just write what is the sentiment of the following product review
+
+32
+00:01:58,960 --> 00:02:04,520
+加上通常的分隔符和评论文本等等，然后让我们运行这个提示
+ with the usual delimiter and the review text and so on, and let's run that
+
+33
+00:02:04,640 --> 00:02:08,880
+这表示该产品评论的情绪是积极的
+ This says the sentiment of the product review is positive
+
+34
+00:02:08,880 --> 00:02:11,400
+这实际上似乎很正确
+ which actually seems pretty right
+
+35
+00:02:11,400 --> 00:02:14,720
+这盏灯并不完美，但这位顾客看起来很满意
+ This lamp isn't perfect, but this customer seems pretty happy
+
+36
+00:02:14,720 --> 00:02:17,000
+这似乎是一个关心客户和产品的伟大公司
+ Seems to be a great company that cares about the customers and products
+
+37
+00:02:17,000 --> 00:02:20,360
+我认为积极的情绪似乎是正确的答案
+ I think positive sentiment seems to be the right answer
+
+38
+00:02:20,360 --> 00:02:22,440
+现在，这就把整个句子打印出来
+ Now, this prints out the entire sentence
+
+39
+00:02:22,440 --> 00:02:25,480
+该产品评论的情绪是积极的
+ the sentiment of the product review is positive
+
+40
+00:02:25,480 --> 00:02:31,720
+如果你想给出一个更简洁的回答，以便于后期处理
+ If you wanted to give a more concise response to make it easier for post-processing
+
+41
+00:02:31,720 --> 00:02:35,120
+我可以在这个提示中加入另一条指令
+ I can take this prompt and add another instruction
+
+42
+00:02:35,120 --> 00:02:37,320
+只给你一个单词的答案
+ to give you answers to single word
+
+43
+00:02:37,320 --> 00:02:38,960
+正面或负面
+ either positive or negative
+
+44
+00:02:38,960 --> 00:02:42,840
+它只是像这样打印出正面，这对一段文字来说更容易
+ It just prints out positive like this, which makes it easier for a piece of text
+
+45
+00:02:42,840 --> 00:02:46,760
+来处理这个输出，并对它做一些处理
+ to take this output and process it and do something with it
+
+46
+00:02:46,760 --> 00:02:49,320
+让我们看一下另一个提示
+ Let's look at another prompt
+
+47
+00:02:49,320 --> 00:02:52,160
+再来一遍，仍然使用关于台灯的评论
+ Again, still using the lamp review
+
+48
+00:02:52,160 --> 00:02:55,760
+在这里，我让它识别一个列表
+ Here, I have it identify a list of
+
+49
+00:02:55,760 --> 00:02:58,360
+以下评论的作者所表达的情绪
+ emotions that the writer of the following review is expressing
+
+50
+00:02:58,360 --> 00:03:01,840
+在这个列表中包括不超过五个项目
+ including no more than five items in this list
+
+51
+00:03:01,840 --> 00:03:04,680
+大语言模型在以下方面相当出色
+ Large language models are pretty good at
+
+52
+00:03:04,680 --> 00:03:08,320
+从一段文本中提取特定的东西
+ extracting specific things out of a piece of text
+
+53
+00:03:08,320 --> 00:03:11,760
+在这种情况下，我们要表达的是情绪
+ In this case, we're expressing the emotions
+
+54
+00:03:11,760 --> 00:03:14,720
+这对于了解
+ This could be useful for understanding how
+
+55
+00:03:14,720 --> 00:03:18,320
+你的客户对某一特定产品的看法
+ your customers think about a particular product
+
+56
+00:03:18,320 --> 00:03:21,480
+对于很多客户支持机构来说，了解客户对产品的看法很重要
+ For a lot of customer support organizations
+
+57
+00:03:21,480 --> 00:03:26,640
+理解一个特定的用户是否对你的产品非常不满是非常重要的
+ it's important to understand if a particular user is extremely upset
+
+58
+00:03:26,640 --> 00:03:30,400
+你可能有这样一个不同的分类问题
+ You might have a different classification problem like this
+
+59
+00:03:30,400 --> 00:03:33,040
+下面这篇评论的作者是否在表达愤怒？
+ is the writer of the following review expressing anger?
+
+60
+00:03:33,040 --> 00:03:34,880
+因为如果某人真的很生气
+ Because if someone is really angry
+
+61
+00:03:34,880 --> 00:03:39,840
+它可能值得付出额外的关注来获得客户评论
+ it might merit paying extra attention to have a customer review
+
+62
+00:03:39,840 --> 00:03:41,920
+获得客户支持或成功拿下客户
+ to have customer support or customer success
+
+63
+00:03:41,920 --> 00:03:46,000
+伸出援手，弄清楚发生了什么事，并为客户把事情做好
+ reach out to figure what's going on and make things right for the customer
+
+64
+00:03:46,000 --> 00:03:48,960
+在这种情况下，客户并不生气
+ In this case, the customer is not angry
+
+65
+00:03:48,960 --> 00:03:52,240
+注意，有了监督学习
+ Notice that with supervised learning
+
+66
+00:03:52,240 --> 00:03:55,400
+如果我想建立所有这些分类器
+ if I had wanted to build all of these classifiers
+
+67
+00:03:55,400 --> 00:03:58,880
+我不可能用监督学习在短短几分钟内完成这些工作
+ there's no way I would have been able to do this with
+
+68
+00:03:58,880 --> 00:04:04,040
+而你在这段视频中看到我这样做了
+ supervised learning in just a few minutes that you saw me do so in this video
+
+69
+00:04:04,040 --> 00:04:08,520
+我鼓励你暂停这个视频，并尝试改变其中的一些提示
+ I'd encourage you to pause this video and try changing some of these prompts
+
+70
+00:04:08,520 --> 00:04:12,680
+也许问一下客户是否表达了喜悦之情，或者问一下是否有
+ Maybe ask if the customer is expressing delight or ask if there are
+
+71
+00:04:12,680 --> 00:04:15,320
+任何缺失的部分，看看你是否能得到一个提示来
+ any missing parts and see if you can get a prompt to
+
+72
+00:04:15,320 --> 00:04:20,120
+对这个实验室进行不同的推断
+ make different inferences about this lab review
+
+73
+00:04:20,600 --> 00:04:28,360
+让我再展示一下你可以用这个系统做的一些事情
+ Let me show some more things that you can do with this system
+
+74
+00:04:28,360 --> 00:04:35,360
+特别是从客户评论中提取更丰富的信息
+ specifically extracting richer information from a customer review
+
+75
+00:04:35,640 --> 00:04:39,920
+信息提取是NLP的一部分
+ Information extraction is the part of NLP
+
+76
+00:04:39,920 --> 00:04:43,160
+自然语言处理的一部分，它涉及到将一段文本
+ of natural language processing that relates to taking a piece of
+
+77
+00:04:43,160 --> 00:04:48,240
+并从文本中提取出你想知道的某些东西
+ text and extracting certain things that you want to know from the text
+
+78
+00:04:48,240 --> 00:04:50,600
+在这个提示中，我问它
+ In this prompt, I'm asking it
+
+79
+00:04:50,600 --> 00:04:52,840
+确定以下项目
+ identify the following items
+
+80
+00:04:52,840 --> 00:04:57,360
+购买的物品和制造该物品的公司名称
+ the item purchase and the name of the company that made the item
+
+81
+00:04:57,360 --> 00:05:05,320
+同样，如果你想从一个在线购物的电子商务网站上总结出许多评论
+ Again, if you are trying to summarize many reviews from an online shopping e-commerce website
+
+82
+00:05:05,320 --> 00:05:07,920
+对于你收集的大量评论来说
+ it might be useful for your large collection of
+
+83
+00:05:07,920 --> 00:05:10,160
+弄清楚这些评论所涉及的物品可能会很有用
+ reviews to figure out what were the items
+
+84
+00:05:10,160 --> 00:05:13,600
+可以通过分析评论中的内容，找出评论涉及的物品制造商
+ who made the item, figure out positive and negative sentiment
+
+85
+00:05:13,600 --> 00:05:16,680
+并确定积极和消极情绪
+ to track trends about positive or negative sentiment for
+
+86
+00:05:16,680 --> 00:05:20,480
+以追踪特定物品或制造商的积极或消极情绪趋势
+ specific items or for specific manufacturers
+
+87
+00:05:20,480 --> 00:05:24,960
+在这个例子中，我将要求它把响应格式化为
+ In this example, I'm going to ask it to format your response as
+
+88
+00:05:24,960 --> 00:05:29,560
+一个以项目和品牌为键的JSON对象
+ a JSON object with item and brand as the keys
+
+89
+00:05:29,560 --> 00:05:33,840
+如果我这样做了，它就会说这个物品是一盏灯
+ If I do that, it says the item is a lamp
+
+90
+00:05:33,840 --> 00:05:35,880
+品牌是Luminar
+ the brand is Luminar
+
+91
+00:05:35,880 --> 00:05:38,000
+你可以很容易地将其加载到
+ and you can easily load this into
+
+92
+00:05:38,000 --> 00:05:42,880
+Python字典中，然后对这个输出做额外的处理
+ Python dictionary to then do additional processing on this output
+
+93
+00:05:42,880 --> 00:05:44,600
+在我们所经历的例子中
+ In the examples we've gone through
+
+94
+00:05:44,600 --> 00:05:48,640
+你看到了如何写一个提示来识别情感
+ you saw how to write a prompt to recognize the sentiment
+
+95
+00:05:48,640 --> 00:05:50,960
+弄清某人是否生气
+ figure out if someone is angry
+
+96
+00:05:50,960 --> 00:05:54,600
+然后再提取物品和品牌
+ and then also extract the item and the brand
+
+97
+00:05:54,600 --> 00:06:01,920
+提取所有这些信息的一个方法是使用三或四个提示语
+ One way to extract all of this information would be to use three or four prompts
+
+98
+00:06:01,920 --> 00:06:06,400
+并调用三次或四次get_completion
+ and call get_completion three times or four times
+
+99
+00:06:06,400 --> 00:06:09,960
+一次一次地提取这些不同的字段
+ extract these different fields one at a time
+
+100
+00:06:09,960 --> 00:06:13,080
+但事实证明，你实际上可以只写一个提示符
+ But it turns out you can actually write a single prompt
+
+101
+00:06:13,080 --> 00:06:16,480
+来同时提取所有这些信息
+ to extract all of this information at the same time
+
+102
+00:06:16,480 --> 00:06:18,960
+比方说识别以下项目
+ Let's say identify the following items
+
+103
+00:06:18,960 --> 00:06:23,040
+提取情绪，是评论者表达愤怒
+ extract sentiment, is a reviewer expressing anger
+
+104
+00:06:23,040 --> 00:06:25,840
+项目的购买，公司的动画
+ item purchase, company animated
+
+105
+00:06:25,840 --> 00:06:33,480
+然后在这里，我还要告诉它把愤怒值格式化为一个布尔值
+ Then here, I'm also going to tell it to format the anger value as a Boolean value
+
+106
+00:06:33,480 --> 00:06:35,960
+让我运行它
+ Let me run that
+
+107
+00:06:35,960 --> 00:06:43,480
+这将输出一个JSON，其中情绪是积极的
+ This outputs a JSON where sentiment is positive
+
+108
+00:06:43,480 --> 00:06:45,880
+愤怒，然后在false周围没有引号
+ anger, and then no quotes around false
+
+109
+00:06:45,880 --> 00:06:48,840
+因为它也只是把它输出为一个布尔值
+ because it also just output it as a Boolean value
+
+110
+00:06:48,840 --> 00:06:52,520
+提取出"lamp with additional storage"作为物品，而不仅仅是"lamp"
+ Extracted the item as lamp with additional storage instead of lamp
+
+111
+00:06:52,520 --> 00:06:53,880
+看起来还不错
+ Seems okay
+
+112
+00:06:53,880 --> 00:06:57,760
+这种方法让你只需一个提示
+ But this way, you can extract multiple fields out of
+
+113
+00:06:57,760 --> 00:07:02,400
+就可以从一段文本中提取多个字段
+ a piece of text with just a single prompt
+
+114
+00:07:02,400 --> 00:07:05,200
+像往常一样，请随意暂停视频
+ As usual, please feel free to pause the video
+
+115
+00:07:05,200 --> 00:07:08,160
+并在此基础上试玩一下，感受不同变化
+ and play with different variations on this yourself
+
+116
+00:07:08,160 --> 00:07:12,080
+或者甚至可以尝试输入一个完全不同的评论，看看你是否
+ Or maybe even try typing in a totally different review to see if you
+
+117
+00:07:12,080 --> 00:07:15,480
+能否仍然准确地提取这些东西
+ can still extract these things accurately
+
+118
+00:07:15,480 --> 00:07:19,440
+现在，我看到大型语言模型很酷的应用之一
+ Now, one of the cool applications I've seen of
+
+119
+00:07:19,440 --> 00:07:22,600
+是推断主题
+ large language models is inferring topics
+
+120
+00:07:22,600 --> 00:07:25,000
+给出一段长的文字
+ Given a long piece of text
+
+121
+00:07:25,000 --> 00:07:28,040
+这段文字是关于什么的？
+ what is this piece of text about?
+
+122
+00:07:28,040 --> 00:07:29,480
+主题是什么？
+ What are the topics?
+
+123
+00:07:29,480 --> 00:07:33,360
+这是一篇虚构的报纸文章，关于如何
+ Here's a fictitious newspaper article about how
+
+124
+00:07:33,360 --> 00:07:37,720
+政府工作人员对他们所工作的机构的感受
+ government workers feel about the agency they work for
+
+125
+00:07:37,720 --> 00:07:41,440
+最近由政府等进行的调查
+ The recent survey conducted by government and so on
+
+126
+00:07:41,440 --> 00:07:43,160
+结果审查，NASA是
+ results reviewed at NASA was
+
+127
+00:07:43,160 --> 00:07:46,400
+一个受欢迎的部门，满意度很高
+ a popular department with high satisfaction rating
+
+128
+00:07:46,400 --> 00:07:48,000
+我是NASA的粉丝
+ I am a fan of NASA
+
+129
+00:07:48,000 --> 00:07:51,040
+喜欢他们所做的工作，但这是一篇虚构的文章
+ love the work they do, but this is a fictitious article
+
+130
+00:07:51,040 --> 00:07:53,280
+鉴于这样的文章
+ Given an article like this
+
+131
+00:07:53,280 --> 00:07:57,920
+我们可以用这个提示来问它
+ we can ask it with this prompt
+
+132
+00:07:57,920 --> 00:08:03,320
+确定以下文本中讨论的五个主题
+ determine five topics that are being discussed in the following text
+
+133
+00:08:03,320 --> 00:08:05,760
+让我们把每一项都写成一到两个字的长度
+ Let's make each item one or two words long
+
+134
+00:08:05,760 --> 00:08:09,320
+为我的回答，用逗号分隔的列表
+ for my response, comma separated list
+
+135
+00:08:09,320 --> 00:08:11,160
+如果我们运行这个
+ If we run that
+
+136
+00:08:11,160 --> 00:08:14,680
+我们就会发现，这篇文章是关于政府调查的
+ we get out this article is about a government survey
+
+137
+00:08:14,680 --> 00:08:17,880
+是关于工作满意度的，是关于NASA的，等等
+ is about job satisfaction, is about NASA, and so on
+
+138
+00:08:17,880 --> 00:08:23,320
+总的来说，我认为相当不错的主题列表的提取
+ Overall, I think pretty nice extraction of a list of topics
+
+139
+00:08:23,320 --> 00:08:28,280
+当然，你也可以把它分开，这样你就可以得到
+ Of course, you can also split it so you get
+
+140
+00:08:28,280 --> 00:08:34,360
+一个包含这篇文章所涉及的五个主题的Python列表
+ a Python list with the five topics that this article was about
+
+141
+00:08:34,360 --> 00:08:38,600
+如果你有一个文章的集合，并提取主题
+ If you have a collection of articles and extract topics
+
+142
+00:08:38,600 --> 00:08:40,800
+那么你还可以使用
+ you can then also use
+
+143
+00:08:40,800 --> 00:08:45,640
+一个大语言模型来帮助你索引到不同的主题
+ a large language model to help you index into different topics
+
+144
+00:08:45,640 --> 00:08:48,560
+让我用一个稍微不同的主题列表
+ Let me use a slightly different topic list
+
+145
+00:08:48,560 --> 00:08:52,240
+比方说，我们是一个新闻网站或其他什么
+ Let's say that we're a news websites or something
+
+146
+00:08:52,240 --> 00:08:54,720
+而这些是我们追踪的主题
+ and these are the topics we track
+
+147
+00:08:54,720 --> 00:08:56,480
+NASA，当地政府，工程
+ NASA, local government, engineering
+
+148
+00:08:56,480 --> 00:08:59,480
+员工满意度，联邦政府
+ employee satisfaction, federal government
+
+149
+00:08:59,480 --> 00:09:01,680
+比方说，你想弄清楚
+ Let's say you want to figure out
+
+150
+00:09:01,680 --> 00:09:03,280
+给出一篇新闻文章
+ given a news article
+
+151
+00:09:03,280 --> 00:09:07,720
+这篇新闻报道中涉及哪些主题
+ which of these topics are covered in that news article
+
+152
+00:09:07,720 --> 00:09:10,760
+这里有一个提示，我可以使用
+ Here's a prompt that I can use
+
+153
+00:09:10,760 --> 00:09:13,720
+我想说的是，确定 "有趣的主题清单 "中的每一项
+ I'm going to say, determine whether each item in
+
+154
+00:09:13,720 --> 00:09:16,840
+是否是下面文本中的一个主题
+ the fun list of topics is a topic in the text below
+
+155
+00:09:16,840 --> 00:09:20,880
+给出你的答案，这是每个话题的01
+ Give your answers and this is 01 for each topic
+
+156
+00:09:22,320 --> 00:09:25,880
+很好。这是和之前一样的故事文本
+ Great. This is the same story text as before
+
+157
+00:09:25,880 --> 00:09:28,240
+这个东西是一个故事。它是关于NASA的
+ This thing is a story. It is about NASA
+
+158
+00:09:28,240 --> 00:09:30,840
+这不是关于地方政府，不是关于工程
+ It's not about local governments, not about engineering
+
+159
+00:09:30,840 --> 00:09:35,080
+它是关于员工满意度的，它是关于联邦政府的
+ It is about employee satisfaction and it is about federal government
+
+160
+00:09:35,080 --> 00:09:37,720
+有了这个，在机器学习中
+ With this, in machine learning
+
+161
+00:09:37,720 --> 00:09:42,320
+这有时被称为 "零示例学习算法"
+ this is sometimes called a zero-shot learning algorithm
+
+162
+00:09:42,320 --> 00:09:45,600
+因为我们没有给它任何有标签的训练数据
+ because we didn't give it any training data that was labeled
+
+163
+00:09:45,600 --> 00:09:47,440
+这就是零示例
+ That's zero-shot
+
+164
+00:09:47,440 --> 00:09:48,960
+只需一个提示
+ With just a prompt
+
+165
+00:09:48,960 --> 00:09:51,480
+它就能够确定哪些
+ it was able to determine which of
+
+166
+00:09:51,480 --> 00:09:55,880
+这些主题在那篇新闻报道中被涵盖
+ these topics are covered in that news article
+
+167
+00:09:55,880 --> 00:10:00,800
+如果你想生成一个新闻警报
+ If you want to generate a news alert
+
+168
+00:10:00,800 --> 00:10:05,840
+这样处理新闻，我真的很喜欢NASA做的很多工作
+ so that process news and I really like a lot of work that NASA does
+
+169
+00:10:05,840 --> 00:10:10,560
+如果你想建立一个系统，可以把这个
+ If you want to build a system that can take this
+
+170
+00:10:10,560 --> 00:10:13,440
+把这些信息放到一个字典里，每当
+ put this information into a dictionary and whenever
+
+171
+00:10:13,440 --> 00:10:15,960
+NASA的新闻出现，就打印提醒
+ NASA news pops up, print alert
+
+172
+00:10:15,960 --> 00:10:20,520
+新的NASA故事，他们可以用这个来非常迅速地采取任何文章
+ new NASA story, they can use this to very quickly take any article
+
+173
+00:10:20,520 --> 00:10:22,680
+弄清楚它是关于什么主题的
+ figure out what topics it is about
+
+174
+00:10:22,680 --> 00:10:24,600
+如果该主题包括NASA
+ and if the topic includes NASA
+
+175
+00:10:24,600 --> 00:10:27,920
+让它打印出警报，新的NASA故事
+ have it print out alert, new NASA story
+
+176
+00:10:27,920 --> 00:10:32,480
+只有一件事，我在下面使用这个主题词典
+ Just one thing, I use this topic dictionary down here
+
+177
+00:10:32,480 --> 00:10:36,200
+我在上面使用的这个提示不是很强大
+ This prompt that I use up here isn't very robust
+
+178
+00:10:36,200 --> 00:10:38,080
+如果我想要一个生产系统
+ If I wanted a production system
+
+179
+00:10:38,080 --> 00:10:43,680
+我可能会让它以JSON格式输出答案
+ I would probably have it output the answer in JSON format
+
+180
+00:10:43,680 --> 00:10:46,400
+而不是作为一个列表，因为输出的
+ rather than as a list because the output
+
+181
+00:10:46,400 --> 00:10:49,640
+大语言模型会有一点不一致
+ of the large language model can be a little bit inconsistent
+
+182
+00:10:49,640 --> 00:10:52,240
+这实际上是一段很脆弱 的代码
+ This is actually a pretty brittle piece of code
+
+183
+00:10:52,240 --> 00:10:54,800
+但是，如果你想，当你看完这个视频后
+ But if you want, when you're done watching this video
+
+184
+00:10:54,800 --> 00:10:58,520
+可以看看你能不能想出办法来修改这个提示
+ feel free to see if you can figure out how to modify this prompt
+
+185
+00:10:58,520 --> 00:11:01,320
+让它输出JSON而不是像这样的一个列表
+ to have it output JSON instead of a list like this
+
+186
+00:11:01,320 --> 00:11:07,720
+然后有一个更强大的方法来判断某篇文章是否是关于NASA的故事
+ and then have a more robust way to tell if a particular article is a story about NASA
+
+187
+00:11:07,720 --> 00:11:10,800
+所以，这就是推断的内容
+ So that's it for inferring
+
+188
+00:11:10,800 --> 00:11:12,600
+在短短的几分钟内
+ In just a few minutes
+
+189
+00:11:12,600 --> 00:11:16,720
+你可以建立多个系统，对文本进行推断
+ you can build multiple systems for making inferences about
+
+190
+00:11:16,720 --> 00:11:19,760
+这些推断以前需要一名熟练的机器学习开发人员
+ text that previously just would have taken days or
+
+191
+00:11:19,760 --> 00:11:23,680
+花费数天甚至数周才能完成
+ even weeks for a skilled machine learning developer
+
+192
+00:11:23,680 --> 00:11:27,120
+我认为，无论是对于熟练的机器学习开发人员
+ I find this very exciting that both for
+
+193
+00:11:27,120 --> 00:11:29,280
+还是机器学习新手而言
+ skilled machine learning developers as well as for
+
+194
+00:11:29,280 --> 00:11:31,720
+这都是非常令人兴奋的消息
+ people that are newer to machine learning
+
+195
+00:11:31,720 --> 00:11:37,080
+你现在可以使用提示来非常快速地建立并开始
+ you can now use prompting to very quickly build and start
+
+196
+00:11:37,080 --> 00:11:42,880
+对这些相当复杂的自然语言处理任务做出推断
+ making inferences on pretty complicated natural language processing tasks like these
+
+197
+00:11:42,880 --> 00:11:44,240
+在下一个视频中
+ In the next video
+
+198
+00:11:44,240 --> 00:11:47,520
+我们将继续讨论令人激动的事情，你可以用
+ we'll continue to talk about exciting things you could do with
+
+199
+00:11:47,520 --> 00:11:51,240
+大语言模型，我们将继续进行转换
+ large language models and we'll go on to transforming
+
+200
+00:11:51,240 --> 00:11:54,800
+把一段文本转换为
+ How can you take one piece of text and transform it into
+
+201
+00:11:54,800 --> 00:11:58,440
+不同的文本，如翻译成不同的语言
+ a different piece of text such as translated to a different language
+
+202
+00:11:58,440 --> 00:12:07,600
+让我们继续看下一个视频
+ Let's go on to the next video
+

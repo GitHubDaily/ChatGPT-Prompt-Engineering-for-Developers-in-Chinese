@@ -1,0 +1,510 @@
+1
+00:00:05,000 --> 00:00:09,000
+欢迎学习面向开发者的《ChatGPT Prompt工程》课程
+ Welcome to this course on ChatGPT Prompt Engineering for Developers
+
+2
+00:00:09,000 --> 00:00:14,000
+我很高兴能邀请到Isa Fulford和我一起授课
+ I'm thrilled to have with me Iza Fulford to teach this along with me
+
+3
+00:00:14,000 --> 00:00:18,000
+她是OpenAI的技术人员之一，曾建立了流行的
+ She is a member of the technical staff of OpenAI and had built the popular
+
+4
+00:00:18,000 --> 00:00:23,000
+ChatGPT检索插件，她的很大一部分工作是教人们
+ ChatGPT Retrieval plugin and a large part of her work has been teaching people
+
+5
+00:00:23,000 --> 00:00:27,000
+如何在产品中使用OEM或大语言模型技术
+ how to use OEM or large language model technology in products
+
+6
+00:00:27,000 --> 00:00:31,000
+她还为教人们提示的OpenAI手册做出了贡献
+ She's also contributed to the OpenAI cookbook that teaches people prompting
+
+7
+00:00:31,000 --> 00:00:32,000
+所以，很高兴有你参与
+ So thrilled to have you with you
+
+8
+00:00:32,000 --> 00:00:37,000
+我也很高兴能在这里与大家分享一些提示的最佳做法
+ And I'm thrilled to be here and share some prompting best practices with you all
+
+9
+00:00:37,000 --> 00:00:42,000
+在互联网上有很多关于提示的材料，有一些文章
+ So there's been a lot of material on the internet for prompting with articles
+
+10
+00:00:42,000 --> 00:00:45,000
+比如每个人都必须知道的30个提示
+ like 30 prompts everyone has to know
+
+11
+00:00:45,000 --> 00:00:50,000
+其中很多都集中在ChatGPT的网络用户界面上
+ A lot of that has been focused on the ChatGPT web user interface
+
+12
+00:00:50,000 --> 00:00:54,000
+许多人使用它来完成特定的、通常是一次性的任务
+ which many people are using to do specific and often one-off tasks
+
+13
+00:00:54,000 --> 00:01:00,000
+但我认为OEM的力量，大语言模型作为一个开发者也是如此
+ But I think the power of OEMs, large language models as a developer too
+
+14
+00:01:00,000 --> 00:01:04,000
+那就是使用API调用OEMs来快速建立软件应用
+ that is using API calls to OEMs to quickly build software applications
+
+15
+00:01:04,000 --> 00:01:08,000
+我认为这仍然是非常不被重视的
+ I think that is still very underappreciated
+
+16
+00:01:08,000 --> 00:01:12,000
+事实上，我在AI Fund的团队，也就是Deep Learning.AI的姐妹公司
+ In fact, my team at AI Fund, which is a sister company to Deep Learning.AI
+
+17
+00:01:12,000 --> 00:01:16,000
+一直在与许多初创公司合作，将这些技术应用于许多不同的应用
+ has been working with many startups on applying these technologies
+
+18
+00:01:16,000 --> 00:01:18,000
+在许多不同的应用中
+ to many different applications
+
+19
+00:01:18,000 --> 00:01:23,000
+看到OEM APIs能够让开发者快速建立什么，这很令人兴奋
+ And it's been exciting to see what OEM APIs can enable developers
+
+20
+00:01:23,000 --> 00:01:25,000
+迅速建立
+ to very quickly build
+
+21
+00:01:25,000 --> 00:01:29,000
+所以在这个课程中，我们将与你分享一些可能性
+ So in this course, we'll share with you some of the possibilities
+
+22
+00:01:29,000 --> 00:01:34,000
+你可以做什么，以及如何做的最佳实践
+ for what you can do as well as best practices for how you can do them
+
+23
+00:01:34,000 --> 00:01:36,000
+有很多材料要涵盖
+ There's a lot of material to cover
+
+24
+00:01:36,000 --> 00:01:41,000
+首先，你将学习一些软件开发的提示性最佳实践
+ First, you'll learn some prompting best practices for software development
+
+25
+00:01:41,000 --> 00:01:45,000
+然后，我们将涵盖一些常见的用例，总结，推断
+ Then we'll cover some common use cases, summarizing, inferring
+
+26
+00:01:45,000 --> 00:01:50,000
+转化、扩展，然后你将使用LLM建立一个聊天机器人
+ transforming, expanding, and then you'll build a chatbot using an LLM
+
+27
+00:01:50,000 --> 00:01:53,000
+我们希望这将激发你对新应用的想象力
+ We hope that this will spark your imagination about new applications
+
+28
+00:01:53,000 --> 00:01:55,000
+你可以建立的新应用
+ that you can build
+
+29
+00:01:55,000 --> 00:01:58,000
+因此，在大型语言模型或LLM的发展中
+ So in the development of large language models or LLMs
+
+30
+00:01:58,000 --> 00:02:02,000
+大体上有两种类型的LLM，我把它们称为
+ there have been broadly two types of LLMs, which I'm going to refer to
+
+31
+00:02:02,000 --> 00:02:06,000
+作为基础LLM和指令学习LLM
+ as base LLMs and instruction-tuned LLMs
+
+32
+00:02:06,000 --> 00:02:11,000
+所以基础LLM已经被训练成基于文本训练数据来预测下一个单词
+ So base LLM has been trained to predict the next word based on text training data
+
+33
+00:02:11,000 --> 00:02:15,000
+通常在来自互联网和其他来源的大量数据上进行训练
+ often trained on a large amount of data from the internet and other sources
+
+34
+00:02:15,000 --> 00:02:19,000
+来计算出下一个最可能出现的词是什么
+ to figure out what's the next most likely word to follow
+
+35
+00:02:19,000 --> 00:02:24,000
+因此，举例来说，如果你要输入这个提示，从前有一只独角兽
+ So for example, if you were to prompt this, once upon a time there was a unicorn
+
+36
+00:02:24,000 --> 00:02:28,000
+它可能完成这个，也就是说，它可能预测接下来的几个词是
+ it may complete this, that is, it may predict the next several words are
+
+37
+00:02:28,000 --> 00:02:31,000
+和所有独角兽朋友一起生活在一个神奇的森林里
+ that live in a magical forest with all unicorn friends
+
+38
+00:02:31,000 --> 00:02:35,000
+但是如果你用法国的首都是什么作为提示
+ But if you were to prompt this with what is the capital of France
+
+39
+00:02:35,000 --> 00:02:40,000
+那么根据互联网上的文章可能有
+ then based on what articles on the internet might have
+
+40
+00:02:40,000 --> 00:02:44,000
+很有可能的是，基础LLM会以下列方式完成这个任务
+ it's quite possible that the base LLM will complete this with
+
+41
+00:02:44,000 --> 00:02:48,000
+什么是法国最大的城市，什么是法国的人口，等等
+ what is France's largest city, what is France's population, and so on
+
+42
+00:02:48,000 --> 00:02:52,000
+因为互联网上的文章很有可能是关于法国的问答题列表
+ because articles on the internet could quite plausibly be lists of quiz questions
+
+43
+00:02:52,000 --> 00:02:55,000
+关于法国的问答题列表
+ about the country of France
+
+44
+00:02:55,000 --> 00:03:00,000
+与此相反，指令学习LLM，发展势头较猛
+ In contrast, an instruction-tuned LLM, which is where a lot of momentum
+
+45
+00:03:00,000 --> 00:03:04,000
+LLM的研究和实践一直在进行
+ of LLM research and practice has been going
+
+46
+00:03:04,000 --> 00:03:08,000
+一个经过指令学习的LLM已经被训练得能够遵循指令
+ an instruction-tuned LLM has been trained to follow instructions
+
+47
+00:03:08,000 --> 00:03:11,000
+因此，如果你要问它，法国的首都是什么？
+ So if you were to ask it, what is the capital of France
+
+48
+00:03:11,000 --> 00:03:15,000
+它更有可能输出法国的首都是巴黎
+ it's much more likely to output something like the capital of France is Paris
+
+49
+00:03:15,000 --> 00:03:19,000
+因此，指令学习的LLM的典型训练方式是
+ So the way that instruction-tuned LLMs are typically trained is
+
+50
+00:03:19,000 --> 00:03:23,000
+你从一个在大量文本数据上训练过的基本LLM开始
+ you start off with a base LLM that's been trained on a huge amount of text data
+
+51
+00:03:23,000 --> 00:03:28,000
+然后进一步训练它，用输入和输出来进一步微调它
+ and further train it, further fine-tune it with inputs and outputs
+
+52
+00:03:28,000 --> 00:03:32,000
+这些输入和输出都是指令，也是遵循这些指令的良好尝试
+ that are instructions and good attempts to follow those instructions
+
+53
+00:03:32,000 --> 00:03:36,000
+然后经常使用一种叫做RLHF的技术进一步完善
+ and then often further refine using a technique called RLHF
+
+54
+00:03:36,000 --> 00:03:41,000
+从人类反馈中进行强化学习，以使系统能够更好地
+ reinforcement learning from human feedback, to make the system better able
+
+55
+00:03:41,000 --> 00:03:43,000
+提供帮助并遵循指令
+ to be helpful and follow instructions
+
+56
+00:03:43,000 --> 00:03:47,000
+因为经过指令学习的LLM已经被训练得很有帮助
+ Because instruction-tuned LLMs have been trained to be helpful
+
+57
+00:03:47,000 --> 00:03:51,000
+诚实和无害，因此，举例来说，它们不太可能输出
+ honest, and harmless, so for example, they're less likely to output
+
+58
+00:03:51,000 --> 00:03:55,000
+有问题的文本，如有害的输出，与基础LLM相比
+ problematic text, such as toxic outputs, compared to base LLM
+
+59
+00:03:55,000 --> 00:03:59,000
+很多实际的使用场景已经转向了
+ a lot of the practical usage scenarios have been shifting
+
+60
+00:03:59,000 --> 00:04:01,000
+倾向于指令学习的LLMs
+ toward instruction-tuned LLMs
+
+61
+00:04:01,000 --> 00:04:04,000
+你在互联网上找到的一些最佳实践可能更适合于基础LLM
+ Some of the best practices you find on the internet may be more suited
+
+62
+00:04:04,000 --> 00:04:08,000
+的最佳实践，但对于今天的大多数实际应用来说，这些最佳实践可能更适合基础LLM
+ for a base LLM, but for most practical applications today
+
+63
+00:04:08,000 --> 00:04:13,000
+我们建议大多数人多关注指令学习的LLMs
+ we would recommend most people instead focus on instruction-tuned LLMs
+
+64
+00:04:13,000 --> 00:04:17,000
+它们更容易使用，而且由于OpenAI
+ which are easier to use, and also because of the work of OpenAI
+
+65
+00:04:17,000 --> 00:04:22,000
+和其他LLM公司的工作，变得更加安全和一致
+ and other LLM companies, becoming safer and more aligned
+
+66
+00:04:22,000 --> 00:04:27,000
+因此，本课程将重点介绍指令学习LLM的最佳实践
+ So this course will focus on best practices for instruction-tuned LLMs
+
+67
+00:04:27,000 --> 00:04:32,000
+这也是我们建议你在大多数应用中使用的
+ which is what we recommend you use for most of your applications
+
+68
+00:04:32,000 --> 00:04:36,000
+在继续之前，我只想感谢来自OpenAI
+ Before moving on, I just want to acknowledge the team from OpenAI
+
+69
+00:04:36,000 --> 00:04:39,000
+和DeepLearning.ai的团队
+ and DeepLearning.ai that had contributed to the materials
+
+70
+00:04:39,000 --> 00:04:42,000
+的团队，他们为我和Isa将要介绍的材料做出了贡献
+ that Isa and I will be presenting
+
+71
+00:04:42,000 --> 00:04:45,000
+我非常感谢Andrew Main, Joe Palermo, Boris Power
+ I'm very grateful to Andrew Main, Joe Palermo, Boris Power
+
+72
+00:04:45,000 --> 00:04:49,000
+Ted Sanders，以及来自OpenAI的Lilian Wang
+ Ted Sanders, and Lilian Wang from OpenAI that were very involved
+
+73
+00:04:49,000 --> 00:04:53,000
+与我们一起集思广益，审核材料
+ with us brainstorming materials, vetting the materials to put together
+
+74
+00:04:53,000 --> 00:04:55,000
+并做成这个简短的课程
+ the curriculum for this short course
+
+75
+00:04:55,000 --> 00:04:58,000
+我也很感谢DeepLearning方面的工作
+ And I'm also grateful on the DeepLearning side for the work
+
+76
+00:04:58,000 --> 00:05:01,000
+Jeff Ludwig、Eddie Hsu和Tommy Nelson的工作
+ of Jeff Ludwig, Eddie Hsu, and Tommy Nelson
+
+77
+00:05:01,000 --> 00:05:06,000
+因此，当你使用一个指令学习LLM时，可以将其看作是
+ So when you use an instruction-tuned LLM, think of giving instructions
+
+78
+00:05:06,000 --> 00:05:10,000
+向另一个人发出指令，比如一个聪明但不知道
+ to another person, say someone that's smart but doesn't know
+
+79
+00:05:10,000 --> 00:05:12,000
+任务细节的人
+ the specifics of your task
+
+80
+00:05:12,000 --> 00:05:16,000
+因此，当一个LLM不工作时，有时是因为指令
+ So when an LLM doesn't work, sometimes it's because the instructions
+
+81
+00:05:16,000 --> 00:05:17,000
+不够清楚
+ weren't clear enough
+
+82
+00:05:17,000 --> 00:05:20,000
+例如，如果你说，请给我写一些
+ For example, if you were to say, please write me something
+
+83
+00:05:20,000 --> 00:05:22,000
+关于艾伦-图灵的东西
+ about Alan Turing
+
+84
+00:05:22,000 --> 00:05:26,000
+那么，除此之外，明确以下几点也会有所帮助
+ Well, in addition to that, it can be helpful to be clear about
+
+85
+00:05:26,000 --> 00:05:30,000
+你想让文章侧重于他的科学工作
+ whether you want the text to focus on his scientific work
+
+86
+00:05:30,000 --> 00:05:34,000
+他的个人生活、他在历史上的作用或其他方向
+ or his personal life or his role in history or something else
+
+87
+00:05:34,000 --> 00:05:39,000
+如果你指定了想要文本的语调
+ And if you specify what you want the tone of the text to be
+
+88
+00:05:39,000 --> 00:05:43,000
+它是否会根据指定的语调来写，比如像专业记者写的那样
+ should it take on the tone like a professional journalist would write
+
+89
+00:05:43,000 --> 00:05:46,000
+还是更像随手写给朋友的轻松语气？
+ or is it more of a casual note that you dash off to a friend?
+
+90
+00:05:46,000 --> 00:05:47,000
+这一点是成立的
+ That holds
+
+91
+00:05:47,000 --> 00:05:49,000
+LLM会产生你想要的东西
+ The LLM generates what you want
+
+92
+00:05:49,000 --> 00:05:52,000
+当然，如果你想象自己在问，比如
+ And of course, if you picture yourself asking, say
+
+93
+00:05:52,000 --> 00:05:56,000
+一个刚毕业的大学生为你完成这项任务
+ a fresh college graduate to carry out this task for you
+
+94
+00:05:56,000 --> 00:05:59,000
+如果你甚至可以指定他们应该阅读哪些文本片段
+ if you can even specify what snippets of text they should read
+
+95
+00:05:59,000 --> 00:06:02,000
+提前写出这篇关于艾伦-图灵的文章
+ in advance to write this text about Alan Turing
+
+96
+00:06:02,000 --> 00:06:06,000
+那么，这甚至更好地设置了那个刚毕业的大学生的成功
+ then that even better sets up that fresh college grad for success
+
+97
+00:06:06,000 --> 00:06:09,000
+来为你完成这项任务
+ to carry out this task for you
+
+98
+00:06:09,000 --> 00:06:13,000
+因此，在接下来的视频中，你会看到关于如何明确和具体的例子
+ So in the next video, you see examples of how to be clear
+
+99
+00:06:13,000 --> 00:06:17,000
+这是一个重要的LLM提示原则
+ and specific, which is an important principle of prompting LLMs
+
+100
+00:06:17,000 --> 00:06:21,000
+而且你还从Isa那里学到了提示的第二个原则
+ And you also learn from Isa a second principle of prompting
+
+101
+00:06:21,000 --> 00:06:24,000
+那就是给LLM时间来思考
+ that is giving a LLM time to think
+
+102
+00:06:24,000 --> 00:06:29,000
+因此，让我们继续观看下一个视频
+ So with that, let's go on to the next video
+

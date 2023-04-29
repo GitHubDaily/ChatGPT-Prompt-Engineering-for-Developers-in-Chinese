@@ -1,0 +1,1040 @@
+1
+00:00:05,000 --> 00:00:08,600
+关于大语言模型的一个令人兴奋的事情，是你可以用它来
+ One of the exciting things about a large language model is you could use it to
+
+2
+00:00:08,600 --> 00:00:12,680
+构建一个自定义的聊天机器人，只需花费少量的精力
+ build a custom chatbot with only a modest amount of effort
+
+3
+00:00:12,680 --> 00:00:17,660
+ChatGPT的Web界面能让你通过一个大语言模型
+ ChatGPT, the web interface is a way for you to have a conversational interface
+
+4
+00:00:17,660 --> 00:00:20,500
+进行对话
+ a conversation via a large language model
+
+5
+00:00:20,500 --> 00:00:23,120
+但其中一个很酷的事情是你也可以使用
+ But one of the cool things is you can also use
+
+6
+00:00:23,120 --> 00:00:25,680
+一个大语言模型来建立你的自定义聊天机器人
+ a large language model to build your custom chatbot
+
+7
+00:00:25,680 --> 00:00:28,920
+也许可以扮演一个AI客户服务代理或
+ to maybe play the role of an AI customer service agent or
+
+8
+00:00:28,920 --> 00:00:31,480
+餐馆的AI接单员
+ an AI order taker for restaurants
+
+9
+00:00:31,480 --> 00:00:34,400
+在这段视频中，你将学习如何做这件事
+ And in this video, you learn how to do that for yourself
+
+10
+00:00:34,400 --> 00:00:37,080
+我将描述以下内容
+ I'm going to describe the components of
+
+11
+00:00:37,080 --> 00:00:39,960
+我将更详细地描述OpenAI的聊天补全格式
+ the OpenAI chat completions format in more detail
+
+12
+00:00:39,960 --> 00:00:42,540
+然后你将自己建立一个聊天机器人
+ and then you're going to build a chatbot yourself
+
+13
+00:00:42,540 --> 00:00:44,400
+所以让我们开始吧
+ So let's get into it
+
+14
+00:00:44,400 --> 00:00:49,000
+首先，我们将像往常一样设置OpenAI Python包
+ So first, we'll set up the OpenAI Python package as usual
+
+15
+00:00:49,000 --> 00:00:53,380
+因此，像ChatGPT这样的聊天模型实际上是被训练成以一系列的信息作为输入
+ So chat models like ChatGPT are actually trained to take a series of
+
+16
+00:00:53,380 --> 00:00:57,640
+并返回模型生成的信息作为输出
+ messages as input and return a model generated message as output
+
+17
+00:00:57,640 --> 00:00:59,960
+因此，尽管聊天格式的设计是为了
+ And so although the chat format is designed to
+
+18
+00:00:59,960 --> 00:01:02,320
+使得像这样的多轮对话变得容易
+ make multi-turn conversations like this easy
+
+19
+00:01:02,320 --> 00:01:06,000
+我们在之前的视频中已经看到
+ we've kind of seen through the previous videos that it's also just as
+
+20
+00:01:06,000 --> 00:01:09,560
+它也适用于没有对话的单个任务
+ useful for single-turn tasks without any conversation
+
+21
+00:01:09,560 --> 00:01:14,200
+所以接下来，我们要定义两个辅助函数
+ And so next, we're going to kind of define two helper functions
+
+22
+00:01:14,200 --> 00:01:17,080
+就是我们在所有视频中一直在使用的一个
+ So this is the one that we've been using throughout all the videos
+
+23
+00:01:17,080 --> 00:01:20,360
+get_completion函数
+ and it's the get_completion function
+
+24
+00:01:20,360 --> 00:01:22,080
+但是，如果你看一下它
+ But if you kind of look at it
+
+25
+00:01:22,080 --> 00:01:25,040
+我们给出了一个提示，但是在这个函数里面
+ we give a prompt, but then kind of inside the function
+
+26
+00:01:25,040 --> 00:01:29,320
+我们实际上在做的是把这个提示放到一个
+ what we're actually doing is putting this prompt into what looks
+
+27
+00:01:29,320 --> 00:01:32,160
+看起来像某种用户信息
+ what looks like some kind of user message
+
+28
+00:01:32,160 --> 00:01:37,200
+这是因为ChatGPT模型是一个聊天模型
+ And this is because the ChatGPT model is a chat model
+
+29
+00:01:37,200 --> 00:01:40,200
+这意味着它被训练成以一系列信息作为输入
+ which means it's trained to take a series of messages as input
+
+30
+00:01:40,200 --> 00:01:44,000
+然后返回模型生成的信息输出
+ and then return model generated messages output
+
+31
+00:01:44,000 --> 00:01:45,880
+所以用户信息是一种输入
+ So the user message is kind of
+
+32
+00:01:45,880 --> 00:01:49,320
+然后助理的信息是输出
+ the input and then the assistant message is the output
+
+33
+00:01:49,320 --> 00:01:51,320
+所以在这个视频中
+ So in this video
+
+34
+00:01:51,320 --> 00:01:53,760
+我们将使用一个不同的辅助函数
+ we're going to actually use a different helper function
+
+35
+00:01:53,760 --> 00:01:55,640
+而不是把
+ And instead of kind of putting
+
+36
+00:01:55,640 --> 00:01:58,400
+单一提示作为输入并获得单一结果
+ a single prompt as input and getting a single completion
+
+37
+00:01:58,400 --> 00:02:01,680
+我们将传入一个信息列表
+ we're going to pass in a list of messages
+
+38
+00:02:01,680 --> 00:02:05,400
+这些信息可以来自各种不同的角色
+ And these messages can be kind of from a variety of different roles
+
+39
+00:02:05,400 --> 00:02:07,160
+所以我将描述这些
+ So I'll describe those
+
+40
+00:02:07,160 --> 00:02:10,040
+这里有一个消息列表的例子
+ So here's an example of a list of messages
+
+41
+00:02:10,040 --> 00:02:12,040
+第一条信息是
+ And so the first message is
+
+42
+00:02:12,040 --> 00:02:15,200
+一个系统消息，它给出了一个总体指令
+ a system message which kind of gives an overall instruction
+
+43
+00:02:15,200 --> 00:02:16,360
+然后在这个消息之后
+ And then after this message
+
+44
+00:02:16,360 --> 00:02:20,040
+我们在用户和助理之间有几轮对话
+ we have kind of turns between the user and the assistant
+
+45
+00:02:20,040 --> 00:02:21,920
+而且这种对话通常会继续下去
+ And this is kind of continue to go on
+
+46
+00:02:21,920 --> 00:02:24,800
+如果你曾经使用过ChatGPT的Web界面
+ And if you've ever used ChatGPT, the web interface
+
+47
+00:02:24,800 --> 00:02:27,680
+那么你输入的信息就是用户信息
+ then your messages are the user messages
+
+48
+00:02:27,680 --> 00:02:30,880
+然后ChatGPT的信息是助理的信息
+ and then ChatGPT's messages are the assistant messages
+
+49
+00:02:30,880 --> 00:02:33,440
+因此，系统信息有助于在某种程度上
+ So the system message helps to kind of
+
+50
+00:02:33,440 --> 00:02:35,800
+设定助理的行为和角色
+ set the behavior and persona of the assistant
+
+51
+00:02:35,800 --> 00:02:38,920
+它就像对话的高级指令一样
+ and it acts as kind of a high-level instruction for the conversation
+
+52
+00:02:38,920 --> 00:02:40,640
+所以你可以把它看成是
+ So you can kind of think of it as whispering in
+
+53
+00:02:40,640 --> 00:02:42,440
+在助理的耳边说的话，并引导
+ the assistant's ear and kind of guiding
+
+54
+00:02:42,440 --> 00:02:46,320
+它的反应，而用户并不知道系统的信息
+ its responses without the user being aware of the system message
+
+55
+00:02:46,320 --> 00:02:47,960
+因此，作为用户
+ So as the user
+
+56
+00:02:47,960 --> 00:02:49,400
+如果你曾经使用过ChatGPT
+ if you've ever used ChatGPT
+
+57
+00:02:49,400 --> 00:02:52,640
+你可能不知道ChatGPT的系统消息里有什么
+ you probably don't know what's in ChatGPT's system message
+
+58
+00:02:52,640 --> 00:02:55,360
+系统消息的好处是
+ The benefit of the system message is that it provides you
+
+59
+00:02:55,360 --> 00:02:57,240
+它为开发者提供了一种方法来框定会话
+ the developer, with a way to kind of frame
+
+60
+00:02:57,240 --> 00:02:59,120
+而不是让请求本身
+ the conversation without making
+
+61
+00:02:59,120 --> 00:03:01,320
+成为对话的一部分
+ the request itself part of the conversation
+
+62
+00:03:01,320 --> 00:03:04,880
+这样，你就可以在不让用户察觉的情况下引导助理
+ So you can kind of guide the assistant and kind of whisper in
+
+63
+00:03:04,880 --> 00:03:09,640
+并指导其回复
+ its ear and guide its responses without making the user aware
+
+64
+00:03:10,280 --> 00:03:15,440
+所以现在让我们试着在对话中使用这些信息
+ So now let's try to use these messages in a conversation
+
+65
+00:03:16,080 --> 00:03:19,160
+所以我们将使用我们的新助理函数
+ So we'll use our new helper function to get
+
+66
+00:03:19,160 --> 00:03:21,720
+来补全消息内容
+ the completion from the messages
+
+67
+00:03:22,600 --> 00:03:27,200
+而且我们也在使用更高的temperature
+ and we're also using a higher temperature
+
+68
+00:03:27,200 --> 00:03:29,400
+所以系统消息说
+ So the system message says
+
+69
+00:03:29,400 --> 00:03:31,440
+你是一个说话像莎士比亚的助理
+ you are an assistant that speaks like Shakespeare
+
+70
+00:03:31,440 --> 00:03:33,160
+所以这是我们在向助理描述
+ So this is us kind of
+
+71
+00:03:33,160 --> 00:03:35,960
+向助理描述它应该如何表现
+ describing to the assistant how it should behave
+
+72
+00:03:35,960 --> 00:03:38,680
+然后第一个用户信息是，告诉我一个笑话
+ and then the first user message is, tell me a joke
+
+73
+00:03:38,680 --> 00:03:41,640
+接下来是，鸡为什么要过马路？
+ The next is, why did the chicken cross the road?
+
+74
+00:03:41,640 --> 00:03:45,520
+然后最后的用户信息是，我不知道
+ Then the final user message is, I don't know
+
+75
+00:03:45,520 --> 00:03:49,880
+所以，如果我们运行这个
+ So if we run this
+
+76
+00:03:50,600 --> 00:03:55,400
+响应是"去到另一边"。让我们再试一次
+ the response is to get to the other side. Let's try again
+
+77
+00:03:55,720 --> 00:03:57,920
+"要到另一边去"
+ To get to the other side
+
+78
+00:03:57,920 --> 00:03:59,240
+公平的先生或女士
+ fair sir or madam
+
+79
+00:03:59,240 --> 00:04:02,040
+这是一个古老而经典的方法，永远不会失败
+ it is an old and classic that never fails
+
+80
+00:04:02,040 --> 00:04:05,120
+所以这就是我们的莎士比亚式响应
+ So that's our Shakespearean response
+
+81
+00:04:05,640 --> 00:04:08,960
+让我们再试一次
+ Let's actually try one more thing because I want to make
+
+82
+00:04:08,960 --> 00:04:11,520
+因为我想让它更清楚，这是助理的信息
+ it even clearer that this is the assistant message
+
+83
+00:04:11,520 --> 00:04:19,360
+所以在这里，让我们去打印整个消息的回应
+ So here let's just go and print the entire message response
+
+84
+00:04:32,880 --> 00:04:36,240
+所以只是为了让这个更清楚
+ So just to make this even clearer
+
+85
+00:04:36,240 --> 00:04:41,160
+这个响应是一个助理信息
+ this response is an assistant message
+
+86
+00:04:41,160 --> 00:04:45,680
+所以角色是助理，然后内容是消息本身
+ So the role is assistant and then the content is the message itself
+
+87
+00:04:45,680 --> 00:04:48,000
+所以这就是在这个辅助函数中发生的事情
+ So that's what's happening in this helper function
+
+88
+00:04:48,000 --> 00:04:51,880
+我们只是传出了消息的内容
+ We're just passing out the content of the message
+
+89
+00:05:04,960 --> 00:05:07,960
+所以现在让我们再做一个例子
+ So now let's do another example
+
+90
+00:05:07,960 --> 00:05:09,840
+这里我们的消息是
+ So here our messages are
+
+91
+00:05:09,840 --> 00:05:13,160
+系统信息是你是一个友好的聊天机器人
+ the system message is you're a friendly chatbot
+
+92
+00:05:13,160 --> 00:05:14,560
+而第一个用户信息是
+ and the first user message is
+
+93
+00:05:14,560 --> 00:05:16,120
+嗨，我的名字是Isa
+ hi, my name is Isa
+
+94
+00:05:16,120 --> 00:05:20,640
+我们想获得第一个用户的信息
+ We want to get the first user message
+
+95
+00:05:20,640 --> 00:05:22,080
+所以让我们执行这个
+ So let's execute this
+
+96
+00:05:22,080 --> 00:05:24,640
+第一条助理信息
+ the first assistant message
+
+97
+00:05:24,640 --> 00:05:26,880
+因此，第一条信息是
+ So the first message is
+
+98
+00:05:26,880 --> 00:05:28,400
+你好，Isa，很高兴见到你
+ hello Isa, it's nice to meet you
+
+99
+00:05:28,400 --> 00:05:30,760
+我今天有什么可以帮助你的吗？
+ How can I assist you today?
+
+100
+00:05:36,000 --> 00:05:38,760
+现在让我们试试另一个例子
+ Now let's try another example
+
+101
+00:05:39,320 --> 00:05:43,720
+所以这里我们的信息是系统信息
+ So here our messages are system message
+
+102
+00:05:43,720 --> 00:05:45,120
+你是一个友好的聊天机器人
+ you're a friendly chatbot
+
+103
+00:05:45,120 --> 00:05:47,080
+和第一个用户信息是
+ and the first user message is
+
+104
+00:05:47,080 --> 00:05:53,880
+是的，你能提醒我我的名字是什么吗？
+ yes, can you remind me what is my name?
+
+105
+00:05:53,880 --> 00:05:56,400
+让我们得到回应
+ Let's get the response
+
+106
+00:05:56,400 --> 00:06:01,440
+正如你所看到的
+ As you can see
+
+107
+00:06:01,440 --> 00:06:05,800
+该模型实际上并不知道我的名字
+ the model doesn't actually know my name
+
+108
+00:06:05,800 --> 00:06:10,680
+因此，与语言模型的每一次对话都是一个独立的互动
+ So each conversation with a language model is a standalone interaction
+
+109
+00:06:10,680 --> 00:06:13,200
+这意味着，你必须提供所有相关的信息
+ which means that you must provide all relevant messages
+
+110
+00:06:13,200 --> 00:06:16,120
+供模型在当前对话中使用
+ for the model to draw from in the current conversation
+
+111
+00:06:16,120 --> 00:06:18,560
+如果你想让模型从或中汲取
+ If you want the model to draw from or
+
+112
+00:06:18,560 --> 00:06:21,240
+引述，记住一个对话的早期部分
+ quote unquote, remember earlier parts of a conversation
+
+113
+00:06:21,240 --> 00:06:24,640
+你必须在模型的输入中提供早期的对话交互内容
+ you must provide the earlier exchanges in the input to the model
+
+114
+00:06:24,640 --> 00:06:26,960
+我们也把这称为上下文
+ So we'll refer to this as context
+
+115
+00:06:26,960 --> 00:06:30,240
+所以，让我们来试试这个
+ So let's try this
+
+116
+00:06:34,440 --> 00:06:39,000
+所以现在我们已经给出了模型需要的上下文
+ So now we've given the context that the model needs
+
+117
+00:06:39,000 --> 00:06:41,600
+这是我在以前的信息中的名字
+ which is my name in the previous messages
+
+118
+00:06:41,600 --> 00:06:43,160
+我们将问同样的问题
+ and we'll ask the same question
+
+119
+00:06:43,160 --> 00:06:45,640
+所以我们会问我的名字是什么
+ So we'll ask what my name is
+
+120
+00:06:45,960 --> 00:06:50,320
+模型能够作出反应，因为它有所有的上下文
+ and the model is able to respond because it has all of the context it
+
+121
+00:06:50,320 --> 00:06:55,520
+在我们输入的消息列表中需要它
+ needs in this list of messages that we input to it
+
+122
+00:06:55,520 --> 00:06:58,760
+所以现在你要建立你自己的聊天机器人
+ So now you're going to build your own chatbot
+
+123
+00:06:58,760 --> 00:07:02,040
+这个聊天机器人将被称为orderbot（点餐机器人）
+ This chatbot is going to be called orderbot
+
+124
+00:07:02,040 --> 00:07:05,520
+我们将自动收集
+ and we're going to automate the collection of
+
+125
+00:07:05,520 --> 00:07:09,480
+我们将自动收集用户的提示和助理的回应，以建立这个订单机器人
+ user prompts and assistant responses in order to build this orderbot
+
+126
+00:07:09,480 --> 00:07:12,200
+它将在一家披萨店接受订单
+ It's going to take orders at a pizza restaurant
+
+127
+00:07:12,200 --> 00:07:16,040
+所以首先，我们要定义这个助理函数
+ So first, we're going to define this helper function
+
+128
+00:07:16,040 --> 00:07:19,040
+这个函数要做的是收集
+ What this is doing is it's going to collect
+
+129
+00:07:19,040 --> 00:07:24,840
+我们的用户信息，这样我们就可以避免像上面那样用手输入信息了
+ our user messages so we can avoid typing them in by hand in the way that we did above
+
+130
+00:07:24,840 --> 00:07:29,760
+这将从我们下面建立的用户界面上收集提示信息
+ This is going to collect prompts from a user interface that we'll build below
+
+131
+00:07:29,760 --> 00:07:32,800
+然后将其追加到一个叫做"上下文"的列表中
+ and then append it to a list called context
+
+132
+00:07:32,800 --> 00:07:36,280
+然后它每次都会用这个上下文调用模型
+ and then it will call the model with that context every time
+
+133
+00:07:36,280 --> 00:07:39,320
+然后模型的响应也会被添加到上下文中
+ The model response is then also added to the context
+
+134
+00:07:39,320 --> 00:07:43,560
+所以模型的信息被添加到上下文中
+ So the model message is added to the context
+
+135
+00:07:43,560 --> 00:07:45,160
+用户信息被添加到上下文中
+ the user message is added to the context
+
+136
+00:07:45,160 --> 00:07:47,880
+以此类推，它只会越来越长
+ so on, so it just grows longer and longer
+
+137
+00:07:47,880 --> 00:07:52,680
+这样一来，模型就有了它所需要的信息来决定下一步该做什么
+ This way, the model has the information it needs to determine what to do next
+
+138
+00:07:52,680 --> 00:07:58,600
+现在我们将设置并运行这个用户界面来显示订单机器人
+ So now we'll set up and run this UI to display the orderbot
+
+139
+00:07:58,600 --> 00:08:00,360
+所以这里是上下文
+ So here's the context
+
+140
+00:08:00,360 --> 00:08:04,200
+并且它包含了包含菜单的系统信息
+ and it contains the system message that contains the menu
+
+141
+00:08:04,560 --> 00:08:08,160
+请注意，每次我们调用语言模型的时候
+ Note that every time we call the language model
+
+142
+00:08:08,160 --> 00:08:13,400
+我们都会使用相同的上下文，而且这个上下文是随着时间的推移而建立的
+ we're going to use the same context and the context is building up over time
+
+143
+00:08:13,400 --> 00:08:19,040
+然后让我们来执行这个
+ Then let's execute this
+
+144
+00:08:22,880 --> 00:08:25,760
+我要说，你好
+ I'm going to say, hi
+
+145
+00:08:25,760 --> 00:08:29,440
+我想订购一个比萨饼
+ I would like to order a pizza
+
+146
+00:08:33,080 --> 00:08:35,400
+助理说，太好了
+ The assistant says, great
+
+147
+00:08:35,400 --> 00:08:36,880
+你想点什么比萨饼？
+ what pizza would you like to order?
+
+148
+00:08:36,880 --> 00:08:40,520
+我们有意大利香肠、奶酪和茄子比萨
+ We have pepperoni, cheese, and eggplant pizza
+
+149
+00:08:40,520 --> 00:08:44,680
+多少钱？
+ How much are they?
+
+150
+00:08:53,080 --> 00:08:56,880
+很好。好的，我们得到了价格
+ Great. Okay, we have the prices
+
+151
+00:08:56,880 --> 00:09:12,000
+我想我觉得是中号茄子比萨。所以你可以想象
+ I think I'm feeling a medium eggplant pizza. So as you can imagine
+
+152
+00:09:12,000 --> 00:09:14,000
+我们可以继续这个对话
+ we could continue this conversation
+
+153
+00:09:14,000 --> 00:09:17,720
+让我们看看我们在系统信息中放了什么
+ Let's look at what we've put in the system message
+
+154
+00:09:18,280 --> 00:09:20,400
+所以你是orderbot
+ So you are orderbot
+
+155
+00:09:20,400 --> 00:09:23,280
+为一家比萨店收集订单的自动化服务
+ an automated service to collect orders for a pizza restaurant
+
+156
+00:09:23,280 --> 00:09:24,600
+你首先要问候顾客
+ You first greet the customer
+
+157
+00:09:24,600 --> 00:09:27,800
+然后收集订单，再问是自取还是配送
+ then collect the order and then ask if it's a pickup or delivery
+
+158
+00:09:27,800 --> 00:09:29,480
+你等待收集整个订单
+ You wait to collect the entire order
+
+159
+00:09:29,480 --> 00:09:31,680
+然后总结一下，最后进行检查
+ then summarize it and check for a final time
+
+160
+00:09:31,680 --> 00:09:33,800
+如果顾客还想添加其他东西
+ if the customer wants to add anything else
+
+161
+00:09:33,800 --> 00:09:36,400
+如果是送货，你可以要求提供地址
+ If it's a delivery, you can ask for an address
+
+162
+00:09:36,400 --> 00:09:38,040
+最后，你拿到付款
+ Finally, you collect the payment
+
+163
+00:09:38,040 --> 00:09:40,240
+确保清晰描述所有选项、附加服务、额外费用
+ Make sure to clarify all options, extras
+
+164
+00:09:40,240 --> 00:09:43,120
+和尺寸，以便从菜单上精确识别该项目
+ and sizes to uniquely identify the item from the menu
+
+165
+00:09:43,120 --> 00:09:44,920
+你需要以简短的
+ You respond in a short
+
+166
+00:09:44,920 --> 00:09:46,840
+健谈的、友好的风格来回答
+ very conversational, friendly style
+
+167
+00:09:46,840 --> 00:09:50,880
+菜单包括，然后在这里我们有菜单
+ The menu includes, and then here we have the menu
+
+168
+00:09:51,120 --> 00:09:54,200
+所以让我们回到我们的对话
+ So let's go back to our conversation
+
+169
+00:09:54,200 --> 00:09:58,720
+让我们看看助理是否一直在遵循指示
+ And let's see if the assistant kind of has been following the instructions
+
+170
+00:09:58,720 --> 00:10:01,720
+好的，很好。助理问我们是否需要任何配料
+ Okay, great. The assistant asks if we want any toppings
+
+171
+00:10:01,720 --> 00:10:05,760
+我们在系统信息中指定了这一点
+ which we kind of specified in the system message
+
+172
+00:10:05,760 --> 00:10:09,600
+所以我想我们不需要额外的配料
+ So I think we want no extra toppings
+
+173
+00:10:15,600 --> 00:10:18,680
+当然可以。还有什么我们想点的吗？
+ Sure thing. Is there anything else we'd like to order?
+
+174
+00:10:18,680 --> 00:10:22,240
+嗯。让我们来点水
+ Hmm. Let's get some water
+
+175
+00:10:22,240 --> 00:10:26,240
+事实上，薯条
+ Actually, fries
+
+176
+00:10:32,240 --> 00:10:34,240
+小的还是大的？
+ Small or large?
+
+177
+00:10:34,240 --> 00:10:36,240
+这很好，因为我们在系统信息中
+ And this is great because we kind of
+
+178
+00:10:36,240 --> 00:10:41,240
+要求助理在系统信息中说明额外的东西和配菜
+ ask the assistant in the system message to kind of clarify extras and sides
+
+179
+00:10:46,240 --> 00:10:50,240
+这样你就明白了，你可以随意试玩一下这个过程
+ And so you get the idea and please feel free to play with this yourself
+
+180
+00:10:50,240 --> 00:10:55,240
+可以暂停视频，在左边的Notebook上运行这个
+ You can pause the video and just go ahead and run this in your own notebook on the left
+
+181
+00:10:55,240 --> 00:10:59,240
+现在我们可以要求该模型创建一个JSON摘要
+ And so now we can ask the model to create a JSON summary
+
+182
+00:10:59,240 --> 00:11:03,240
+我们可以在对话的基础上发送至订单系统
+ that we could send to the order system based on the conversation
+
+183
+00:11:03,240 --> 00:11:06,240
+所以，我们现在要附加另一个系统消息
+ So we're now appending another system message
+
+184
+00:11:06,240 --> 00:11:08,240
+这是一个指令
+ which is an instruction
+
+185
+00:11:08,240 --> 00:11:11,240
+我们在说创建一个关于之前食品订单的JSON摘要
+ And we're saying create a JSON summary of the previous food order
+
+186
+00:11:11,240 --> 00:11:13,240
+逐项列出每一项的价格
+ Itemize the price for each item
+
+187
+00:11:13,240 --> 00:11:18,240
+字段应该是一个比萨饼，包括配菜
+ The fields should be one pizza, include side
+
+188
+00:11:18,240 --> 00:11:21,240
+两张配料表，三张饮料表
+ two lists of toppings, three lists of drinks
+
+189
+00:11:21,240 --> 00:11:23,240
+和四份配菜清单
+ and four lists of sides
+
+190
+00:11:23,240 --> 00:11:25,240
+最后是总价格
+ And finally, the total price
+
+191
+00:11:25,240 --> 00:11:29,240
+你也可以在这里使用一个用户信息
+ And you could also use a user message here
+
+192
+00:11:29,240 --> 00:11:33,240
+这不一定是一个系统消息
+ This does not have to be a system message
+
+193
+00:11:33,240 --> 00:11:36,240
+所以让我们来执行这个
+ So let's execute this
+
+194
+00:11:36,240 --> 00:11:39,240
+注意在这种情况下，我们需要使用更低的temperature
+ And notice in this case, we're using a lower temperature
+
+195
+00:11:39,240 --> 00:11:41,240
+因为对于这些类型的任务
+ because for these kinds of tasks
+
+196
+00:11:41,240 --> 00:11:43,240
+我们希望输出是相当可预测的
+ we want the output to be fairly predictable
+
+197
+00:11:43,240 --> 00:11:47,240
+对于一个对话式的代理，你可能想使用更高的temperature
+ For a conversational agent, you might want to use a higher temperature
+
+198
+00:11:47,240 --> 00:11:50,240
+然而，在这种情况下，我可能也会使用一个较低的temperature
+ However, in this case, I would maybe use a lower temperature as well
+
+199
+00:11:50,240 --> 00:11:53,240
+因为对于一个客户助理聊天机器人来说
+ because for a customer assistant chatbot
+
+200
+00:11:53,240 --> 00:11:59,240
+你可能想让输出更可预测一些
+ you might want the output to be a bit more predictable as well
+
+201
+00:11:59,240 --> 00:12:02,240
+因此，在这里我们有我们的订单摘要
+ And so here we have the summary of our order
+
+202
+00:12:02,240 --> 00:12:07,240
+如果我们想的话，我们可以把这个提交给订单系统
+ And so we could submit this to the order system if we wanted to
+
+203
+00:12:07,240 --> 00:12:08,240
+这就是我们需要的
+ So there we have it
+
+204
+00:12:08,240 --> 00:12:11,240
+你已经建立了你自己的订单聊天机器人
+ You've built your very own order chatbot
+
+205
+00:12:11,240 --> 00:12:13,240
+你可以自由地定制它
+ Feel free to kind of customize it yourself
+
+206
+00:12:13,240 --> 00:12:16,240
+试玩一下系统信息
+ and play around with the system message
+
+207
+00:12:16,240 --> 00:12:19,240
+并改变聊天机器人的行为
+ and kind of change the behavior of the chatbot
+
+208
+00:12:19,240 --> 00:12:46,240
+让它作为具有不同知识的不同角色行事
+ and get it to act as different personas with different knowledge
+

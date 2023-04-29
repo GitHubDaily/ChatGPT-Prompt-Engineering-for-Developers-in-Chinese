@@ -1,0 +1,230 @@
+1
+00:00:05,000 --> 00:00:08,840
+祝贺你在这个短期课程中走到了最后
+ Congratulations on making it to the end of this short course
+
+2
+00:00:08,840 --> 00:00:11,280
+综上所述，在这个短课程中
+ In summary, in this short course
+
+3
+00:00:11,280 --> 00:00:14,380
+你已经了解了提示的两个关键原则
+ you've learned about two key principles for prompting
+
+4
+00:00:14,380 --> 00:00:17,480
+正确且清晰的描述具体指示，以及知道什么时候使用
+ right clearance for specific instructions and when it's appropriate
+
+5
+00:00:17,480 --> 00:00:19,160
+给予模型思考的时间
+ give the model time to think
+
+6
+00:00:19,160 --> 00:00:22,080
+你还了解了迭代提示的发展以及如何
+ You also learned about iterative prompt development and how
+
+7
+00:00:22,080 --> 00:00:26,200
+有一个过程来获得适合你的应用的提示是关键
+ having a process to get to the prompt is right for your application is key
+
+8
+00:00:26,200 --> 00:00:28,800
+我们还学习了一些大语言模型的功能
+ And we went through a few capabilities of
+
+9
+00:00:28,800 --> 00:00:31,640
+这些功能对许多应用是有用的
+ large language models that are useful for many applications
+
+10
+00:00:31,640 --> 00:00:36,320
+特别是总结、推理、转换和扩展
+ specifically summarizing, inferring, transforming, and expanding
+
+11
+00:00:36,320 --> 00:00:39,880
+你还看到了如何建立一个定制的聊天机器人
+ And you also saw how to build a custom chatbot
+
+12
+00:00:39,880 --> 00:00:43,320
+在短短的课程中，你学到了很多东西
+ That was a lot that you learned in just one short course
+
+13
+00:00:43,320 --> 00:00:46,240
+我希望你喜欢阅读这些材料
+ and I hope you enjoyed going through these materials
+
+14
+00:00:46,240 --> 00:00:47,920
+我们希望你能想出一些想法
+ We hope you'll come up with some ideas for
+
+15
+00:00:47,920 --> 00:00:50,120
+我们希望你能想出一些可以自己构建的应用
+ applications that you can build yourself now
+
+16
+00:00:50,120 --> 00:00:53,120
+并请你去尝试一下，让我们知道你想出了什么
+ And please go try this out and let us know what you come up with
+
+17
+00:00:53,120 --> 00:00:54,720
+任何应用都不小
+ No application is too small
+
+18
+00:00:54,720 --> 00:00:57,000
+从一些很小的项目开始也是可以的
+ It's fine to start with something that's kind of
+
+19
+00:00:57,000 --> 00:00:59,800
+一个非常小的项目，也许实用
+ a very small project with maybe a little bit of utility
+
+20
+00:00:59,800 --> 00:01:01,800
+也可能毫无用处
+ or maybe it's not even useful at all
+
+21
+00:01:01,800 --> 00:01:03,320
+这只是一些有趣的东西
+ It's just something fun
+
+22
+00:01:03,320 --> 00:01:06,200
+是的。我发现玩这些模型非常有趣
+ Yeah. And I find playing with these models actually really fun
+
+23
+00:01:06,200 --> 00:01:07,440
+所以放心去玩吧
+ So go play with it
+
+24
+00:01:07,440 --> 00:01:08,640
+是的，我同意。从我的经验来看
+ Yeah, I agree. It's a good
+
+25
+00:01:08,640 --> 00:01:11,080
+这是一个很好的周末活动
+ a good weekend activity, speaking from experience
+
+26
+00:01:11,080 --> 00:01:14,960
+而且，你可以通过第一个项目获得的经验教训
+ And just, you know
+
+27
+00:01:14,960 --> 00:01:18,520
+来构建第二个更好的项目
+ please use the learnings from your first project to build a better second project
+
+28
+00:01:18,520 --> 00:01:21,360
+甚至可能是更好的第三个项目，等等
+ and you know, maybe even a better third project, so on
+
+29
+00:01:21,360 --> 00:01:26,960
+这就是我自己使用这些模型逐渐成长的方式
+ That's kind of how I have kind of grown over time using these models myself as well
+
+30
+00:01:26,960 --> 00:01:31,360
+或者如果你已经有了一个更大的项目想法，就去做吧
+ Or if you have an idea for a bigger project already, just, just go for it
+
+31
+00:01:31,360 --> 00:01:33,960
+作为一个提醒
+ And, you know, as a reminder
+
+32
+00:01:33,960 --> 00:01:37,200
+这些大语言模型是一种非常强大的技术
+ these kind of large language models are a very powerful technology
+
+33
+00:01:37,200 --> 00:01:41,120
+所以不言而喻，我们要求你负责任地使用它们
+ So it kind of goes without saying that we ask you to use them responsibly
+
+34
+00:01:41,120 --> 00:01:43,960
+请只建立会产生积极影响的东西
+ and please only build things that will have a positive impact
+
+35
+00:01:43,960 --> 00:01:46,240
+是的，完全同意。我认为在这个时代
+ Yeah, fully agree. I think in this age
+
+36
+00:01:46,240 --> 00:01:49,480
+建立AI系统的人可以对其他人产生巨大的影响
+ people that build AI systems can have a huge impact on others
+
+37
+00:01:49,480 --> 00:01:54,960
+因此，我们所有人都要负责任地使用这些工具，这一点比以往任何时候都重要
+ So it's more important than ever that all of us only use these tools responsibly
+
+38
+00:01:54,960 --> 00:01:59,720
+我认为建立基于大语言模型的应用程序
+ And I think building large language model-based applications
+
+39
+00:01:59,720 --> 00:02:02,880
+是一个非常令人兴奋和不断增长的领域
+ is just a very exciting and growing field right now
+
+40
+00:02:02,880 --> 00:02:05,160
+现在你已经完成了这个课程
+ And now that you've finished this course
+
+41
+00:02:05,160 --> 00:02:08,240
+我想你现在已经有了丰富的知识
+ I think you now have a wealth of knowledge to let
+
+42
+00:02:08,240 --> 00:02:11,320
+可以让你构建少数人知道如何构建的东西
+ you build things that few people today know how to
+
+43
+00:02:11,320 --> 00:02:17,280
+与此同时，我希望你也能帮助我们传播信息，鼓励其他人也参加这个课程
+ So I hope you also help us to spread the word and encourage others to take this course too
+
+44
+00:02:17,280 --> 00:02:20,520
+最后，我希望你在做这个课程时很开心
+ In closing, I hope you had fun doing this course
+
+45
+00:02:20,520 --> 00:02:23,280
+同时也感谢你能完成这个课程
+ and I want to thank you for finishing this course
+
+46
+00:02:23,280 --> 00:02:27,120
+Isa和我都期待着听到你所建立的惊人的东西
+ and both Isa and I look forward to hearing about the amazing things that you've built
+
