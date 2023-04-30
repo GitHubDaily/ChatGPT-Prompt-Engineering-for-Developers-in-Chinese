@@ -16,7 +16,7 @@ ChatGPT Retrieval plugin and a large part of her work has been teaching people
 
 5
 00:00:23,000 --> 00:00:27,000
-how to use OEM or large language model technology in products
+how to use LLM or large language model technology in products
 
 6
 00:00:27,000 --> 00:00:31,000
@@ -48,11 +48,11 @@ which many people are using to do specific and often one-off tasks
 
 13
 00:00:54,000 --> 00:01:00,000
-But I think the power of OEMs, large language models as a developer too
+But I think the power of LLMs, large language models as a developer too
 
 14
 00:01:00,000 --> 00:01:04,000
-that is using API calls to OEMs to quickly build software applications
+that is using API calls to LLMs to quickly build software applications
 
 15
 00:01:04,000 --> 00:01:08,000
@@ -72,7 +72,7 @@ to many different applications
 
 19
 00:01:18,000 --> 00:01:23,000
-And it's been exciting to see what OEM APIs can enable developers
+And it's been exciting to see what LLM APIs can enable developers
 
 20
 00:01:23,000 --> 00:01:25,000

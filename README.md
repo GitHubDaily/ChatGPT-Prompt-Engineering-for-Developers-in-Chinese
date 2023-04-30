@@ -1,8 +1,8 @@
 ![banner](https://user-images.githubusercontent.com/42373389/235295056-fc1d7ba7-112d-45e8-a56f-b8cf68d9fa31.png)
 
-# 《ChatGPT Prompt Engineering for Developers》中文版字幕
+# 《ChatGPT Prompt Engineering for Developers》中英双语字幕
 
-该项目主要用于存放《面向开发者的 ChatGPT 提示词工程》非官方版中文字幕。
+该项目主要用于存放《面向开发者的 ChatGPT 提示词工程》非官方版中英双语字幕。
 
 - 中文视频地址：[面向开发者的 ChatGPT 提示词工程](https://www.bilibili.com/video/BV1s24y1F7eq/)
 - 英文原视频地址：[ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/)
@@ -14,6 +14,10 @@
 - `subtitles`：核心字幕，里面放置了「中英双语字幕」；
 - `english_subtitles`：从双语字幕中分离出来的「英文字幕」；
 - `chinese_subtitles`：从双语字幕中分离出来的「中文字幕」。
+
+字幕效果展示：
+
+![image](https://user-images.githubusercontent.com/42373389/235338205-31271b4c-b379-43d1-9b3e-bd5114f9dc09.png)
 
 ## 课程介绍
 

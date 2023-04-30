@@ -20,8 +20,8 @@ ChatGPT 检索插件，她大部分工作是教人们
 
 5
 00:00:23,000 --> 00:00:27,000
-如何在产品中使用OEM或大语言模型技术
- how to use OEM or large language model technology in products
+如何在产品中使用LLM或大语言模型技术
+ how to use LLM or large language model technology in products
 
 6
 00:00:27,000 --> 00:00:31,000
@@ -60,13 +60,13 @@ ChatGPT 检索插件，她大部分工作是教人们
 
 13
 00:00:54,000 --> 00:01:00,000
-但作为一名开发者，我认为OEMs和大语言模型的强大也是不可忽视的
- But I think the power of OEMs, large language models as a developer too
+但作为一名开发者，我认为LLMs和大语言模型的强大也是不可忽视的
+ But I think the power of LLMs, large language models as a developer too
 
 14
 00:01:00,000 --> 00:01:04,000
-那就是通过API调用OEM来快速构建软件应用程序
- that is using API calls to OEMs to quickly build software applications
+那就是通过API调用LLM来快速构建软件应用程序
+ that is using API calls to LLMs to quickly build software applications
 
 15
 00:01:04,000 --> 00:01:08,000
@@ -90,8 +90,8 @@ ChatGPT 检索插件，她大部分工作是教人们
 
 19
 00:01:18,000 --> 00:01:23,000
-看到OEM API能够让开发者快速建立一些东西
- And it's been exciting to see what OEM APIs can enable developers
+看到LLM API能够让开发者快速建立一些东西
+ And it's been exciting to see what LLM APIs can enable developers
 
 20
 00:01:23,000 --> 00:01:25,000
