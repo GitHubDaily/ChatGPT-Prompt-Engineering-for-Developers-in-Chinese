@@ -4,7 +4,7 @@
 
 该项目主要用于存放《面向开发者的 ChatGPT 提示词工程》非官方版中英双语字幕。
 
-- **中文视频地址（复制右边链接，到新窗口打开）：https://www.bilibili.com/list/15467823**
+- **中文视频地址（复制右边链接，到新窗口打开）：https://www.bilibili.com/list/15467823?sid=3247315**
 - **英文原视频地址：https://learn.deeplearning.ai/**
 
 如果你在观看视频的过程中，发现翻译出现错漏、错别字、病句等情况，欢迎向我们提交 Pull Request 以改进字幕翻译质量。
