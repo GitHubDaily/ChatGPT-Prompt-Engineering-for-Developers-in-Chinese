@@ -1,0 +1,832 @@
+1
+00:00:05,000 --> 00:00:08,600
+One of the exciting things about a large language model is you could use it to
+
+2
+00:00:08,600 --> 00:00:12,680
+build a custom chatbot with only a modest amount of effort
+
+3
+00:00:12,680 --> 00:00:17,660
+ChatGPT, the web interface is a way for you to have a conversational interface
+
+4
+00:00:17,660 --> 00:00:20,500
+a conversation via a large language model
+
+5
+00:00:20,500 --> 00:00:23,120
+But one of the cool things is you can also use
+
+6
+00:00:23,120 --> 00:00:25,680
+a large language model to build your custom chatbot
+
+7
+00:00:25,680 --> 00:00:28,920
+to maybe play the role of an AI customer service agent or
+
+8
+00:00:28,920 --> 00:00:31,480
+an AI order taker for restaurants
+
+9
+00:00:31,480 --> 00:00:34,400
+And in this video, you learn how to do that for yourself
+
+10
+00:00:34,400 --> 00:00:37,080
+I'm going to describe the components of
+
+11
+00:00:37,080 --> 00:00:39,960
+the OpenAI chat completions format in more detail
+
+12
+00:00:39,960 --> 00:00:42,540
+and then you're going to build a chatbot yourself
+
+13
+00:00:42,540 --> 00:00:44,400
+So let's get into it
+
+14
+00:00:44,400 --> 00:00:49,000
+So first, we'll set up the OpenAI Python package as usual
+
+15
+00:00:49,000 --> 00:00:53,380
+So chat models like ChatGPT are actually trained to take a series of
+
+16
+00:00:53,380 --> 00:00:57,640
+messages as input and return a model generated message as output
+
+17
+00:00:57,640 --> 00:00:59,960
+And so although the chat format is designed to
+
+18
+00:00:59,960 --> 00:01:02,320
+make multi-turn conversations like this easy
+
+19
+00:01:02,320 --> 00:01:06,000
+we've kind of seen through the previous videos that it's also just as
+
+20
+00:01:06,000 --> 00:01:09,560
+useful for single-turn tasks without any conversation
+
+21
+00:01:09,560 --> 00:01:14,200
+And so next, we're going to kind of define two helper functions
+
+22
+00:01:14,200 --> 00:01:17,080
+So this is the one that we've been using throughout all the videos
+
+23
+00:01:17,080 --> 00:01:20,360
+and it's the get_completion function
+
+24
+00:01:20,360 --> 00:01:22,080
+But if you kind of look at it
+
+25
+00:01:22,080 --> 00:01:25,040
+we give a prompt, but then kind of inside the function
+
+26
+00:01:25,040 --> 00:01:29,320
+what we're actually doing is putting this prompt into what looks
+
+27
+00:01:29,320 --> 00:01:32,160
+what looks like some kind of user message
+
+28
+00:01:32,160 --> 00:01:37,200
+And this is because the ChatGPT model is a chat model
+
+29
+00:01:37,200 --> 00:01:40,200
+which means it's trained to take a series of messages as input
+
+30
+00:01:40,200 --> 00:01:44,000
+and then return model generated messages output
+
+31
+00:01:44,000 --> 00:01:45,880
+So the user message is kind of
+
+32
+00:01:45,880 --> 00:01:49,320
+the input and then the assistant message is the output
+
+33
+00:01:49,320 --> 00:01:51,320
+So in this video
+
+34
+00:01:51,320 --> 00:01:53,760
+we're going to actually use a different helper function
+
+35
+00:01:53,760 --> 00:01:55,640
+And instead of kind of putting
+
+36
+00:01:55,640 --> 00:01:58,400
+a single prompt as input and getting a single completion
+
+37
+00:01:58,400 --> 00:02:01,680
+we're going to pass in a list of messages
+
+38
+00:02:01,680 --> 00:02:05,400
+And these messages can be kind of from a variety of different roles
+
+39
+00:02:05,400 --> 00:02:07,160
+So I'll describe those
+
+40
+00:02:07,160 --> 00:02:10,040
+So here's an example of a list of messages
+
+41
+00:02:10,040 --> 00:02:12,040
+And so the first message is
+
+42
+00:02:12,040 --> 00:02:15,200
+a system message which kind of gives an overall instruction
+
+43
+00:02:15,200 --> 00:02:16,360
+And then after this message
+
+44
+00:02:16,360 --> 00:02:20,040
+we have kind of turns between the user and the assistant
+
+45
+00:02:20,040 --> 00:02:21,920
+And this is kind of continue to go on
+
+46
+00:02:21,920 --> 00:02:24,800
+And if you've ever used ChatGPT, the web interface
+
+47
+00:02:24,800 --> 00:02:27,680
+then your messages are the user messages
+
+48
+00:02:27,680 --> 00:02:30,880
+and then ChatGPT's messages are the assistant messages
+
+49
+00:02:30,880 --> 00:02:33,440
+So the system message helps to kind of
+
+50
+00:02:33,440 --> 00:02:35,800
+set the behavior and persona of the assistant
+
+51
+00:02:35,800 --> 00:02:38,920
+and it acts as kind of a high-level instruction for the conversation
+
+52
+00:02:38,920 --> 00:02:40,640
+So you can kind of think of it as whispering in
+
+53
+00:02:40,640 --> 00:02:42,440
+the assistant's ear and kind of guiding
+
+54
+00:02:42,440 --> 00:02:46,320
+its responses without the user being aware of the system message
+
+55
+00:02:46,320 --> 00:02:47,960
+So as the user
+
+56
+00:02:47,960 --> 00:02:49,400
+if you've ever used ChatGPT
+
+57
+00:02:49,400 --> 00:02:52,640
+you probably don't know what's in ChatGPT's system message
+
+58
+00:02:52,640 --> 00:02:55,360
+The benefit of the system message is that it provides you
+
+59
+00:02:55,360 --> 00:02:57,240
+the developer, with a way to kind of frame
+
+60
+00:02:57,240 --> 00:02:59,120
+the conversation without making
+
+61
+00:02:59,120 --> 00:03:01,320
+the request itself part of the conversation
+
+62
+00:03:01,320 --> 00:03:04,880
+So you can kind of guide the assistant and kind of whisper in
+
+63
+00:03:04,880 --> 00:03:09,640
+its ear and guide its responses without making the user aware
+
+64
+00:03:10,280 --> 00:03:15,440
+So now let's try to use these messages in a conversation
+
+65
+00:03:16,080 --> 00:03:19,160
+So we'll use our new helper function to get
+
+66
+00:03:19,160 --> 00:03:21,720
+the completion from the messages
+
+67
+00:03:22,600 --> 00:03:27,200
+and we're also using a higher temperature
+
+68
+00:03:27,200 --> 00:03:29,400
+So the system message says
+
+69
+00:03:29,400 --> 00:03:31,440
+you are an assistant that speaks like Shakespeare
+
+70
+00:03:31,440 --> 00:03:33,160
+So this is us kind of
+
+71
+00:03:33,160 --> 00:03:35,960
+describing to the assistant how it should behave
+
+72
+00:03:35,960 --> 00:03:38,680
+and then the first user message is, tell me a joke
+
+73
+00:03:38,680 --> 00:03:41,640
+The next is, why did the chicken cross the road?
+
+74
+00:03:41,640 --> 00:03:45,520
+Then the final user message is, I don't know
+
+75
+00:03:45,520 --> 00:03:49,880
+So if we run this
+
+76
+00:03:50,600 --> 00:03:55,400
+the response is to get to the other side. Let's try again
+
+77
+00:03:55,720 --> 00:03:57,920
+To get to the other side
+
+78
+00:03:57,920 --> 00:03:59,240
+fair sir or madam
+
+79
+00:03:59,240 --> 00:04:02,040
+it is an old and classic that never fails
+
+80
+00:04:02,040 --> 00:04:05,120
+So that's our Shakespearean response
+
+81
+00:04:05,640 --> 00:04:08,960
+Let's actually try one more thing because I want to make
+
+82
+00:04:08,960 --> 00:04:11,520
+it even clearer that this is the assistant message
+
+83
+00:04:11,520 --> 00:04:19,360
+So here let's just go and print the entire message response
+
+84
+00:04:32,880 --> 00:04:36,240
+So just to make this even clearer
+
+85
+00:04:36,240 --> 00:04:41,160
+this response is an assistant message
+
+86
+00:04:41,160 --> 00:04:45,680
+So the role is assistant and then the content is the message itself
+
+87
+00:04:45,680 --> 00:04:48,000
+So that's what's happening in this helper function
+
+88
+00:04:48,000 --> 00:04:51,880
+We're just passing out the content of the message
+
+89
+00:05:04,960 --> 00:05:07,960
+So now let's do another example
+
+90
+00:05:07,960 --> 00:05:09,840
+So here our messages are
+
+91
+00:05:09,840 --> 00:05:13,160
+the system message is you're a friendly chatbot
+
+92
+00:05:13,160 --> 00:05:14,560
+and the first user message is
+
+93
+00:05:14,560 --> 00:05:16,120
+hi, my name is Isa
+
+94
+00:05:16,120 --> 00:05:20,640
+We want to get the first user message
+
+95
+00:05:20,640 --> 00:05:22,080
+So let's execute this
+
+96
+00:05:22,080 --> 00:05:24,640
+the first assistant message
+
+97
+00:05:24,640 --> 00:05:26,880
+So the first message is
+
+98
+00:05:26,880 --> 00:05:28,400
+hello Isa, it's nice to meet you
+
+99
+00:05:28,400 --> 00:05:30,760
+How can I assist you today?
+
+100
+00:05:36,000 --> 00:05:38,760
+Now let's try another example
+
+101
+00:05:39,320 --> 00:05:43,720
+So here our messages are system message
+
+102
+00:05:43,720 --> 00:05:45,120
+you're a friendly chatbot
+
+103
+00:05:45,120 --> 00:05:47,080
+and the first user message is
+
+104
+00:05:47,080 --> 00:05:53,880
+yes, can you remind me what is my name?
+
+105
+00:05:53,880 --> 00:05:56,400
+Let's get the response
+
+106
+00:05:56,400 --> 00:06:01,440
+As you can see
+
+107
+00:06:01,440 --> 00:06:05,800
+the model doesn't actually know my name
+
+108
+00:06:05,800 --> 00:06:10,680
+So each conversation with a language model is a standalone interaction
+
+109
+00:06:10,680 --> 00:06:13,200
+which means that you must provide all relevant messages
+
+110
+00:06:13,200 --> 00:06:16,120
+for the model to draw from in the current conversation
+
+111
+00:06:16,120 --> 00:06:18,560
+If you want the model to draw from or
+
+112
+00:06:18,560 --> 00:06:21,240
+quote unquote, remember earlier parts of a conversation
+
+113
+00:06:21,240 --> 00:06:24,640
+you must provide the earlier exchanges in the input to the model
+
+114
+00:06:24,640 --> 00:06:26,960
+So we'll refer to this as context
+
+115
+00:06:26,960 --> 00:06:30,240
+So let's try this
+
+116
+00:06:34,440 --> 00:06:39,000
+So now we've given the context that the model needs
+
+117
+00:06:39,000 --> 00:06:41,600
+which is my name in the previous messages
+
+118
+00:06:41,600 --> 00:06:43,160
+and we'll ask the same question
+
+119
+00:06:43,160 --> 00:06:45,640
+So we'll ask what my name is
+
+120
+00:06:45,960 --> 00:06:50,320
+and the model is able to respond because it has all of the context it
+
+121
+00:06:50,320 --> 00:06:55,520
+needs in this list of messages that we input to it
+
+122
+00:06:55,520 --> 00:06:58,760
+So now you're going to build your own chatbot
+
+123
+00:06:58,760 --> 00:07:02,040
+This chatbot is going to be called orderbot
+
+124
+00:07:02,040 --> 00:07:05,520
+and we're going to automate the collection of
+
+125
+00:07:05,520 --> 00:07:09,480
+user prompts and assistant responses in order to build this orderbot
+
+126
+00:07:09,480 --> 00:07:12,200
+It's going to take orders at a pizza restaurant
+
+127
+00:07:12,200 --> 00:07:16,040
+So first, we're going to define this helper function
+
+128
+00:07:16,040 --> 00:07:19,040
+What this is doing is it's going to collect
+
+129
+00:07:19,040 --> 00:07:24,840
+our user messages so we can avoid typing them in by hand in the way that we did above
+
+130
+00:07:24,840 --> 00:07:29,760
+This is going to collect prompts from a user interface that we'll build below
+
+131
+00:07:29,760 --> 00:07:32,800
+and then append it to a list called context
+
+132
+00:07:32,800 --> 00:07:36,280
+and then it will call the model with that context every time
+
+133
+00:07:36,280 --> 00:07:39,320
+The model response is then also added to the context
+
+134
+00:07:39,320 --> 00:07:43,560
+So the model message is added to the context
+
+135
+00:07:43,560 --> 00:07:45,160
+the user message is added to the context
+
+136
+00:07:45,160 --> 00:07:47,880
+so on, so it just grows longer and longer
+
+137
+00:07:47,880 --> 00:07:52,680
+This way, the model has the information it needs to determine what to do next
+
+138
+00:07:52,680 --> 00:07:58,600
+So now we'll set up and run this UI to display the orderbot
+
+139
+00:07:58,600 --> 00:08:00,360
+So here's the context
+
+140
+00:08:00,360 --> 00:08:04,200
+and it contains the system message that contains the menu
+
+141
+00:08:04,560 --> 00:08:08,160
+Note that every time we call the language model
+
+142
+00:08:08,160 --> 00:08:13,400
+we're going to use the same context and the context is building up over time
+
+143
+00:08:13,400 --> 00:08:19,040
+Then let's execute this
+
+144
+00:08:22,880 --> 00:08:25,760
+I'm going to say, hi
+
+145
+00:08:25,760 --> 00:08:29,440
+I would like to order a pizza
+
+146
+00:08:33,080 --> 00:08:35,400
+The assistant says, great
+
+147
+00:08:35,400 --> 00:08:36,880
+what pizza would you like to order?
+
+148
+00:08:36,880 --> 00:08:40,520
+We have pepperoni, cheese, and eggplant pizza
+
+149
+00:08:40,520 --> 00:08:44,680
+How much are they?
+
+150
+00:08:53,080 --> 00:08:56,880
+Great. Okay, we have the prices
+
+151
+00:08:56,880 --> 00:09:12,000
+I think I'm feeling a medium eggplant pizza. So as you can imagine
+
+152
+00:09:12,000 --> 00:09:14,000
+we could continue this conversation
+
+153
+00:09:14,000 --> 00:09:17,720
+Let's look at what we've put in the system message
+
+154
+00:09:18,280 --> 00:09:20,400
+So you are orderbot
+
+155
+00:09:20,400 --> 00:09:23,280
+an automated service to collect orders for a pizza restaurant
+
+156
+00:09:23,280 --> 00:09:24,600
+You first greet the customer
+
+157
+00:09:24,600 --> 00:09:27,800
+then collect the order and then ask if it's a pickup or delivery
+
+158
+00:09:27,800 --> 00:09:29,480
+You wait to collect the entire order
+
+159
+00:09:29,480 --> 00:09:31,680
+then summarize it and check for a final time
+
+160
+00:09:31,680 --> 00:09:33,800
+if the customer wants to add anything else
+
+161
+00:09:33,800 --> 00:09:36,400
+If it's a delivery, you can ask for an address
+
+162
+00:09:36,400 --> 00:09:38,040
+Finally, you collect the payment
+
+163
+00:09:38,040 --> 00:09:40,240
+Make sure to clarify all options, extras
+
+164
+00:09:40,240 --> 00:09:43,120
+and sizes to uniquely identify the item from the menu
+
+165
+00:09:43,120 --> 00:09:44,920
+You respond in a short
+
+166
+00:09:44,920 --> 00:09:46,840
+very conversational, friendly style
+
+167
+00:09:46,840 --> 00:09:50,880
+The menu includes, and then here we have the menu
+
+168
+00:09:51,120 --> 00:09:54,200
+So let's go back to our conversation
+
+169
+00:09:54,200 --> 00:09:58,720
+And let's see if the assistant kind of has been following the instructions
+
+170
+00:09:58,720 --> 00:10:01,720
+Okay, great. The assistant asks if we want any toppings
+
+171
+00:10:01,720 --> 00:10:05,760
+which we kind of specified in the system message
+
+172
+00:10:05,760 --> 00:10:09,600
+So I think we want no extra toppings
+
+173
+00:10:15,600 --> 00:10:18,680
+Sure thing. Is there anything else we'd like to order?
+
+174
+00:10:18,680 --> 00:10:22,240
+Hmm. Let's get some water
+
+175
+00:10:22,240 --> 00:10:26,240
+Actually, fries
+
+176
+00:10:32,240 --> 00:10:34,240
+Small or large?
+
+177
+00:10:34,240 --> 00:10:36,240
+And this is great because we kind of
+
+178
+00:10:36,240 --> 00:10:41,240
+ask the assistant in the system message to kind of clarify extras and sides
+
+179
+00:10:46,240 --> 00:10:50,240
+And so you get the idea and please feel free to play with this yourself
+
+180
+00:10:50,240 --> 00:10:55,240
+You can pause the video and just go ahead and run this in your own notebook on the left
+
+181
+00:10:55,240 --> 00:10:59,240
+And so now we can ask the model to create a JSON summary
+
+182
+00:10:59,240 --> 00:11:03,240
+that we could send to the order system based on the conversation
+
+183
+00:11:03,240 --> 00:11:06,240
+So we're now appending another system message
+
+184
+00:11:06,240 --> 00:11:08,240
+which is an instruction
+
+185
+00:11:08,240 --> 00:11:11,240
+And we're saying create a JSON summary of the previous food order
+
+186
+00:11:11,240 --> 00:11:13,240
+Itemize the price for each item
+
+187
+00:11:13,240 --> 00:11:18,240
+The fields should be one pizza, include side
+
+188
+00:11:18,240 --> 00:11:21,240
+two lists of toppings, three lists of drinks
+
+189
+00:11:21,240 --> 00:11:23,240
+and four lists of sides
+
+190
+00:11:23,240 --> 00:11:25,240
+And finally, the total price
+
+191
+00:11:25,240 --> 00:11:29,240
+And you could also use a user message here
+
+192
+00:11:29,240 --> 00:11:33,240
+This does not have to be a system message
+
+193
+00:11:33,240 --> 00:11:36,240
+So let's execute this
+
+194
+00:11:36,240 --> 00:11:39,240
+And notice in this case, we're using a lower temperature
+
+195
+00:11:39,240 --> 00:11:41,240
+because for these kinds of tasks
+
+196
+00:11:41,240 --> 00:11:43,240
+we want the output to be fairly predictable
+
+197
+00:11:43,240 --> 00:11:47,240
+For a conversational agent, you might want to use a higher temperature
+
+198
+00:11:47,240 --> 00:11:50,240
+However, in this case, I would maybe use a lower temperature as well
+
+199
+00:11:50,240 --> 00:11:53,240
+because for a customer assistant chatbot
+
+200
+00:11:53,240 --> 00:11:59,240
+you might want the output to be a bit more predictable as well
+
+201
+00:11:59,240 --> 00:12:02,240
+And so here we have the summary of our order
+
+202
+00:12:02,240 --> 00:12:07,240
+And so we could submit this to the order system if we wanted to
+
+203
+00:12:07,240 --> 00:12:08,240
+So there we have it
+
+204
+00:12:08,240 --> 00:12:11,240
+You've built your very own order chatbot
+
+205
+00:12:11,240 --> 00:12:13,240
+Feel free to kind of customize it yourself
+
+206
+00:12:13,240 --> 00:12:16,240
+and play around with the system message
+
+207
+00:12:16,240 --> 00:12:19,240
+and kind of change the behavior of the chatbot
+
+208
+00:12:19,240 --> 00:12:46,240
+and get it to act as different personas with different knowledge
+

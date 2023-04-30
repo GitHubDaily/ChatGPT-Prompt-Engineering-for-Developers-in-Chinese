@@ -1,0 +1,408 @@
+1
+00:00:05,000 --> 00:00:09,000
+Welcome to this course on ChatGPT Prompt Engineering for Developers
+
+2
+00:00:09,000 --> 00:00:14,000
+I'm thrilled to have with me Iza Fulford to teach this along with me
+
+3
+00:00:14,000 --> 00:00:18,000
+She is a member of the technical staff of OpenAI and had built the popular
+
+4
+00:00:18,000 --> 00:00:23,000
+ChatGPT Retrieval plugin and a large part of her work has been teaching people
+
+5
+00:00:23,000 --> 00:00:27,000
+how to use OEM or large language model technology in products
+
+6
+00:00:27,000 --> 00:00:31,000
+She's also contributed to the OpenAI cookbook that teaches people prompting
+
+7
+00:00:31,000 --> 00:00:32,000
+So thrilled to have you with you
+
+8
+00:00:32,000 --> 00:00:37,000
+And I'm thrilled to be here and share some prompting best practices with you all
+
+9
+00:00:37,000 --> 00:00:42,000
+So there's been a lot of material on the internet for prompting with articles
+
+10
+00:00:42,000 --> 00:00:45,000
+like 30 prompts everyone has to know
+
+11
+00:00:45,000 --> 00:00:50,000
+A lot of that has been focused on the ChatGPT web user interface
+
+12
+00:00:50,000 --> 00:00:54,000
+which many people are using to do specific and often one-off tasks
+
+13
+00:00:54,000 --> 00:01:00,000
+But I think the power of OEMs, large language models as a developer too
+
+14
+00:01:00,000 --> 00:01:04,000
+that is using API calls to OEMs to quickly build software applications
+
+15
+00:01:04,000 --> 00:01:08,000
+I think that is still very underappreciated
+
+16
+00:01:08,000 --> 00:01:12,000
+In fact, my team at AI Fund, which is a sister company to Deep Learning.AI
+
+17
+00:01:12,000 --> 00:01:16,000
+has been working with many startups on applying these technologies
+
+18
+00:01:16,000 --> 00:01:18,000
+to many different applications
+
+19
+00:01:18,000 --> 00:01:23,000
+And it's been exciting to see what OEM APIs can enable developers
+
+20
+00:01:23,000 --> 00:01:25,000
+to very quickly build
+
+21
+00:01:25,000 --> 00:01:29,000
+So in this course, we'll share with you some of the possibilities
+
+22
+00:01:29,000 --> 00:01:34,000
+for what you can do as well as best practices for how you can do them
+
+23
+00:01:34,000 --> 00:01:36,000
+There's a lot of material to cover
+
+24
+00:01:36,000 --> 00:01:41,000
+First, you'll learn some prompting best practices for software development
+
+25
+00:01:41,000 --> 00:01:45,000
+Then we'll cover some common use cases, summarizing, inferring
+
+26
+00:01:45,000 --> 00:01:50,000
+transforming, expanding, and then you'll build a chatbot using an LLM
+
+27
+00:01:50,000 --> 00:01:53,000
+We hope that this will spark your imagination about new applications
+
+28
+00:01:53,000 --> 00:01:55,000
+that you can build
+
+29
+00:01:55,000 --> 00:01:58,000
+So in the development of large language models or LLMs
+
+30
+00:01:58,000 --> 00:02:02,000
+there have been broadly two types of LLMs, which I'm going to refer to
+
+31
+00:02:02,000 --> 00:02:06,000
+as base LLMs and instruction-tuned LLMs
+
+32
+00:02:06,000 --> 00:02:11,000
+So base LLM has been trained to predict the next word based on text training data
+
+33
+00:02:11,000 --> 00:02:15,000
+often trained on a large amount of data from the internet and other sources
+
+34
+00:02:15,000 --> 00:02:19,000
+to figure out what's the next most likely word to follow
+
+35
+00:02:19,000 --> 00:02:24,000
+So for example, if you were to prompt this, once upon a time there was a unicorn
+
+36
+00:02:24,000 --> 00:02:28,000
+it may complete this, that is, it may predict the next several words are
+
+37
+00:02:28,000 --> 00:02:31,000
+that live in a magical forest with all unicorn friends
+
+38
+00:02:31,000 --> 00:02:35,000
+But if you were to prompt this with what is the capital of France
+
+39
+00:02:35,000 --> 00:02:40,000
+then based on what articles on the internet might have
+
+40
+00:02:40,000 --> 00:02:44,000
+it's quite possible that the base LLM will complete this with
+
+41
+00:02:44,000 --> 00:02:48,000
+what is France's largest city, what is France's population, and so on
+
+42
+00:02:48,000 --> 00:02:52,000
+because articles on the internet could quite plausibly be lists of quiz questions
+
+43
+00:02:52,000 --> 00:02:55,000
+about the country of France
+
+44
+00:02:55,000 --> 00:03:00,000
+In contrast, an instruction-tuned LLM, which is where a lot of momentum
+
+45
+00:03:00,000 --> 00:03:04,000
+of LLM research and practice has been going
+
+46
+00:03:04,000 --> 00:03:08,000
+an instruction-tuned LLM has been trained to follow instructions
+
+47
+00:03:08,000 --> 00:03:11,000
+So if you were to ask it, what is the capital of France
+
+48
+00:03:11,000 --> 00:03:15,000
+it's much more likely to output something like the capital of France is Paris
+
+49
+00:03:15,000 --> 00:03:19,000
+So the way that instruction-tuned LLMs are typically trained is
+
+50
+00:03:19,000 --> 00:03:23,000
+you start off with a base LLM that's been trained on a huge amount of text data
+
+51
+00:03:23,000 --> 00:03:28,000
+and further train it, further fine-tune it with inputs and outputs
+
+52
+00:03:28,000 --> 00:03:32,000
+that are instructions and good attempts to follow those instructions
+
+53
+00:03:32,000 --> 00:03:36,000
+and then often further refine using a technique called RLHF
+
+54
+00:03:36,000 --> 00:03:41,000
+reinforcement learning from human feedback, to make the system better able
+
+55
+00:03:41,000 --> 00:03:43,000
+to be helpful and follow instructions
+
+56
+00:03:43,000 --> 00:03:47,000
+Because instruction-tuned LLMs have been trained to be helpful
+
+57
+00:03:47,000 --> 00:03:51,000
+honest, and harmless, so for example, they're less likely to output
+
+58
+00:03:51,000 --> 00:03:55,000
+problematic text, such as toxic outputs, compared to base LLM
+
+59
+00:03:55,000 --> 00:03:59,000
+a lot of the practical usage scenarios have been shifting
+
+60
+00:03:59,000 --> 00:04:01,000
+toward instruction-tuned LLMs
+
+61
+00:04:01,000 --> 00:04:04,000
+Some of the best practices you find on the internet may be more suited
+
+62
+00:04:04,000 --> 00:04:08,000
+for a base LLM, but for most practical applications today
+
+63
+00:04:08,000 --> 00:04:13,000
+we would recommend most people instead focus on instruction-tuned LLMs
+
+64
+00:04:13,000 --> 00:04:17,000
+which are easier to use, and also because of the work of OpenAI
+
+65
+00:04:17,000 --> 00:04:22,000
+and other LLM companies, becoming safer and more aligned
+
+66
+00:04:22,000 --> 00:04:27,000
+So this course will focus on best practices for instruction-tuned LLMs
+
+67
+00:04:27,000 --> 00:04:32,000
+which is what we recommend you use for most of your applications
+
+68
+00:04:32,000 --> 00:04:36,000
+Before moving on, I just want to acknowledge the team from OpenAI
+
+69
+00:04:36,000 --> 00:04:39,000
+and DeepLearning.ai that had contributed to the materials
+
+70
+00:04:39,000 --> 00:04:42,000
+that Isa and I will be presenting
+
+71
+00:04:42,000 --> 00:04:45,000
+I'm very grateful to Andrew Main, Joe Palermo, Boris Power
+
+72
+00:04:45,000 --> 00:04:49,000
+Ted Sanders, and Lilian Wang from OpenAI that were very involved
+
+73
+00:04:49,000 --> 00:04:53,000
+with us brainstorming materials, vetting the materials to put together
+
+74
+00:04:53,000 --> 00:04:55,000
+the curriculum for this short course
+
+75
+00:04:55,000 --> 00:04:58,000
+And I'm also grateful on the DeepLearning side for the work
+
+76
+00:04:58,000 --> 00:05:01,000
+of Jeff Ludwig, Eddie Hsu, and Tommy Nelson
+
+77
+00:05:01,000 --> 00:05:06,000
+So when you use an instruction-tuned LLM, think of giving instructions
+
+78
+00:05:06,000 --> 00:05:10,000
+to another person, say someone that's smart but doesn't know
+
+79
+00:05:10,000 --> 00:05:12,000
+the specifics of your task
+
+80
+00:05:12,000 --> 00:05:16,000
+So when an LLM doesn't work, sometimes it's because the instructions
+
+81
+00:05:16,000 --> 00:05:17,000
+weren't clear enough
+
+82
+00:05:17,000 --> 00:05:20,000
+For example, if you were to say, please write me something
+
+83
+00:05:20,000 --> 00:05:22,000
+about Alan Turing
+
+84
+00:05:22,000 --> 00:05:26,000
+Well, in addition to that, it can be helpful to be clear about
+
+85
+00:05:26,000 --> 00:05:30,000
+whether you want the text to focus on his scientific work
+
+86
+00:05:30,000 --> 00:05:34,000
+or his personal life or his role in history or something else
+
+87
+00:05:34,000 --> 00:05:39,000
+And if you specify what you want the tone of the text to be
+
+88
+00:05:39,000 --> 00:05:43,000
+should it take on the tone like a professional journalist would write
+
+89
+00:05:43,000 --> 00:05:46,000
+or is it more of a casual note that you dash off to a friend?
+
+90
+00:05:46,000 --> 00:05:47,000
+That holds
+
+91
+00:05:47,000 --> 00:05:49,000
+The LLM generates what you want
+
+92
+00:05:49,000 --> 00:05:52,000
+And of course, if you picture yourself asking, say
+
+93
+00:05:52,000 --> 00:05:56,000
+a fresh college graduate to carry out this task for you
+
+94
+00:05:56,000 --> 00:05:59,000
+if you can even specify what snippets of text they should read
+
+95
+00:05:59,000 --> 00:06:02,000
+in advance to write this text about Alan Turing
+
+96
+00:06:02,000 --> 00:06:06,000
+then that even better sets up that fresh college grad for success
+
+97
+00:06:06,000 --> 00:06:09,000
+to carry out this task for you
+
+98
+00:06:09,000 --> 00:06:13,000
+So in the next video, you see examples of how to be clear
+
+99
+00:06:13,000 --> 00:06:17,000
+and specific, which is an important principle of prompting LLMs
+
+100
+00:06:17,000 --> 00:06:21,000
+And you also learn from Isa a second principle of prompting
+
+101
+00:06:21,000 --> 00:06:24,000
+that is giving a LLM time to think
+
+102
+00:06:24,000 --> 00:06:29,000
+So with that, let's go on to the next video
+

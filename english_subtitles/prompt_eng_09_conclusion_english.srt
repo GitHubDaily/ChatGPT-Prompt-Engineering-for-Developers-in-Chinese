@@ -1,0 +1,184 @@
+1
+00:00:05,000 --> 00:00:08,840
+Congratulations on making it to the end of this short course
+
+2
+00:00:08,840 --> 00:00:11,280
+In summary, in this short course
+
+3
+00:00:11,280 --> 00:00:14,380
+you've learned about two key principles for prompting
+
+4
+00:00:14,380 --> 00:00:17,480
+right clearance for specific instructions and when it's appropriate
+
+5
+00:00:17,480 --> 00:00:19,160
+give the model time to think
+
+6
+00:00:19,160 --> 00:00:22,080
+You also learned about iterative prompt development and how
+
+7
+00:00:22,080 --> 00:00:26,200
+having a process to get to the prompt is right for your application is key
+
+8
+00:00:26,200 --> 00:00:28,800
+And we went through a few capabilities of
+
+9
+00:00:28,800 --> 00:00:31,640
+large language models that are useful for many applications
+
+10
+00:00:31,640 --> 00:00:36,320
+specifically summarizing, inferring, transforming, and expanding
+
+11
+00:00:36,320 --> 00:00:39,880
+And you also saw how to build a custom chatbot
+
+12
+00:00:39,880 --> 00:00:43,320
+That was a lot that you learned in just one short course
+
+13
+00:00:43,320 --> 00:00:46,240
+and I hope you enjoyed going through these materials
+
+14
+00:00:46,240 --> 00:00:47,920
+We hope you'll come up with some ideas for
+
+15
+00:00:47,920 --> 00:00:50,120
+applications that you can build yourself now
+
+16
+00:00:50,120 --> 00:00:53,120
+And please go try this out and let us know what you come up with
+
+17
+00:00:53,120 --> 00:00:54,720
+No application is too small
+
+18
+00:00:54,720 --> 00:00:57,000
+It's fine to start with something that's kind of
+
+19
+00:00:57,000 --> 00:00:59,800
+a very small project with maybe a little bit of utility
+
+20
+00:00:59,800 --> 00:01:01,800
+or maybe it's not even useful at all
+
+21
+00:01:01,800 --> 00:01:03,320
+It's just something fun
+
+22
+00:01:03,320 --> 00:01:06,200
+Yeah. And I find playing with these models actually really fun
+
+23
+00:01:06,200 --> 00:01:07,440
+So go play with it
+
+24
+00:01:07,440 --> 00:01:08,640
+Yeah, I agree. It's a good
+
+25
+00:01:08,640 --> 00:01:11,080
+a good weekend activity, speaking from experience
+
+26
+00:01:11,080 --> 00:01:14,960
+And just, you know
+
+27
+00:01:14,960 --> 00:01:18,520
+please use the learnings from your first project to build a better second project
+
+28
+00:01:18,520 --> 00:01:21,360
+and you know, maybe even a better third project, so on
+
+29
+00:01:21,360 --> 00:01:26,960
+That's kind of how I have kind of grown over time using these models myself as well
+
+30
+00:01:26,960 --> 00:01:31,360
+Or if you have an idea for a bigger project already, just, just go for it
+
+31
+00:01:31,360 --> 00:01:33,960
+And, you know, as a reminder
+
+32
+00:01:33,960 --> 00:01:37,200
+these kind of large language models are a very powerful technology
+
+33
+00:01:37,200 --> 00:01:41,120
+So it kind of goes without saying that we ask you to use them responsibly
+
+34
+00:01:41,120 --> 00:01:43,960
+and please only build things that will have a positive impact
+
+35
+00:01:43,960 --> 00:01:46,240
+Yeah, fully agree. I think in this age
+
+36
+00:01:46,240 --> 00:01:49,480
+people that build AI systems can have a huge impact on others
+
+37
+00:01:49,480 --> 00:01:54,960
+So it's more important than ever that all of us only use these tools responsibly
+
+38
+00:01:54,960 --> 00:01:59,720
+And I think building large language model-based applications
+
+39
+00:01:59,720 --> 00:02:02,880
+is just a very exciting and growing field right now
+
+40
+00:02:02,880 --> 00:02:05,160
+And now that you've finished this course
+
+41
+00:02:05,160 --> 00:02:08,240
+I think you now have a wealth of knowledge to let
+
+42
+00:02:08,240 --> 00:02:11,320
+you build things that few people today know how to
+
+43
+00:02:11,320 --> 00:02:17,280
+So I hope you also help us to spread the word and encourage others to take this course too
+
+44
+00:02:17,280 --> 00:02:20,520
+In closing, I hope you had fun doing this course
+
+45
+00:02:20,520 --> 00:02:23,280
+and I want to thank you for finishing this course
+
+46
+00:02:23,280 --> 00:02:27,120
+and both Isa and I look forward to hearing about the amazing things that you've built
+

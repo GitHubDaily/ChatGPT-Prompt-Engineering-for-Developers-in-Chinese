@@ -1,0 +1,376 @@
+1
+00:00:05,000 --> 00:00:09,680
+There's so much text in today's world, pretty much none of us have enough time to read all
+
+2
+00:00:09,680 --> 00:00:12,760
+the things we wish we had time to
+
+3
+00:00:12,760 --> 00:00:16,920
+So one of the most exciting applications I've seen of large language models is to use it
+
+4
+00:00:16,920 --> 00:00:18,660
+to summarize text
+
+5
+00:00:18,660 --> 00:00:24,480
+And this is something that I'm seeing multiple teams build into multiple software applications
+
+6
+00:00:24,480 --> 00:00:26,880
+You can do this in the ChatGPT web interface
+
+7
+00:00:26,880 --> 00:00:31,000
+I do this all the time to summarize articles so I can just kind of read the content of
+
+8
+00:00:31,000 --> 00:00:33,000
+many more articles than I previously could
+
+9
+00:00:33,000 --> 00:00:37,880
+And if you want to do this more programmatically, you'll see how to in this lesson
+
+10
+00:00:37,880 --> 00:00:43,520
+So that's let's dig into the code to see how you could use this yourself to summarize text
+
+11
+00:00:43,520 --> 00:00:48,280
+So let's start off with the same starter code as you saw before of import openai, load the
+
+12
+00:00:48,280 --> 00:00:52,620
+API key and here's that get_completion helper function
+
+13
+00:00:52,620 --> 00:01:00,640
+I'm going to use as the running example, the task of summarizing this product review
+
+14
+00:01:00,640 --> 00:01:04,640
+Got this panda plush toy for my daughter's birthday
+
+15
+00:01:04,640 --> 00:01:06,320
+and so on and so on
+
+16
+00:01:06,320 --> 00:01:13,640
+If you're building an e commerce website, and there's just a large volume of reviews
+
+17
+00:01:13,640 --> 00:01:18,680
+having a tool to summarize the lengthy reviews could give you a way to very quickly glance
+
+18
+00:01:18,680 --> 00:01:24,200
+over more reviews to get a better sense of what all your customers are thinking
+
+19
+00:01:24,200 --> 00:01:27,280
+So here's a prompt for generating a summary
+
+20
+00:01:27,280 --> 00:01:30,600
+Your task is generate a short summary of a product review from e commerce website, summarize
+
+21
+00:01:30,600 --> 00:01:36,800
+review below, and so on, in at most 30 words
+
+22
+00:01:36,800 --> 00:01:42,400
+And so this is soft and cute panda plush toy loved by daughter, but small for the price
+
+23
+00:01:42,400 --> 00:01:43,400
+arrived early
+
+24
+00:01:43,400 --> 00:01:44,400
+Not bad
+
+25
+00:01:44,400 --> 00:01:45,400
+It's a pretty good summary
+
+26
+00:01:45,400 --> 00:01:49,760
+And as you saw in the previous video, you can also play with things like controlling
+
+27
+00:01:49,760 --> 00:01:55,720
+the character count or the number of sentences to affect the length of this summary
+
+28
+00:01:55,720 --> 00:01:59,920
+Now sometimes when creating a summary, if you have a very specific purpose in mind for
+
+29
+00:01:59,920 --> 00:02:05,600
+the summary, for example, if you want to give feedback to the shipping department, you can
+
+30
+00:02:05,600 --> 00:02:11,200
+also modify the prompt to reflect that so that they can generate a summary that is more
+
+31
+00:02:11,200 --> 00:02:15,600
+applicable to one particular group in your business
+
+32
+00:02:15,600 --> 00:02:26,880
+So for example, if I add to give feedback to the shipping department, let's say I change
+
+33
+00:02:26,880 --> 00:02:35,800
+this to start to focus on any aspects that mention shipping and delivery of the product
+
+34
+00:02:35,800 --> 00:02:42,560
+And if I run this, then again, you get a summary, but instead of starting off with soft and
+
+35
+00:02:42,560 --> 00:02:49,120
+cute panda plush toy, it now focuses on the fact that it arrived a day earlier than expected
+
+36
+00:02:49,120 --> 00:02:53,600
+And then it still has, you know, other details
+
+37
+00:02:53,600 --> 00:02:59,640
+Or as another example, if we aren't trying to give feedback to the shipping department
+
+38
+00:02:59,640 --> 00:03:09,520
+but let's say we want to give feedback to the pricing department
+
+39
+00:03:09,520 --> 00:03:15,760
+So the pricing department is responsible for determining the price of the product
+
+40
+00:03:15,760 --> 00:03:22,960
+And I'm going to tell it to focus on any aspects that are relevant to the price and perceived
+
+41
+00:03:22,960 --> 00:03:25,240
+value
+
+42
+00:03:25,240 --> 00:03:31,520
+Then this generates a different summary that it says
+
+43
+00:03:31,520 --> 00:03:33,480
+maybe the price may be too high for a size
+
+44
+00:03:33,480 --> 00:03:38,640
+Now in the summaries that I've generated for the shipping department or the pricing department
+
+45
+00:03:38,640 --> 00:03:44,400
+it focuses a bit more on information relevant to those specific departments
+
+46
+00:03:44,400 --> 00:03:50,000
+And in fact, feel free to pause the video now and maybe ask it to generate information
+
+47
+00:03:50,000 --> 00:03:55,360
+for the product department responsible for the customer experience of the product or
+
+48
+00:03:55,360 --> 00:04:01,920
+for something else that you think might be interesting to an e-commerce site
+
+49
+00:04:01,920 --> 00:04:07,000
+But in these summaries, even though it generated the information relevant to shipping, it had
+
+50
+00:04:07,000 --> 00:04:12,240
+some other information too, which you could decide may or may not be helpful
+
+51
+00:04:12,240 --> 00:04:20,120
+So depending on how you want to summarize it, you can also ask it to extract information
+
+52
+00:04:20,120 --> 00:04:22,960
+rather than summarize it
+
+53
+00:04:22,960 --> 00:04:27,920
+So here's a prompt that says you're tasked to extract relevant information to give feedback
+
+54
+00:04:27,920 --> 00:04:29,200
+to the shipping department
+
+55
+00:04:29,200 --> 00:04:35,440
+And now it just says, product arrived a day earlier than expected without all of the other
+
+56
+00:04:35,440 --> 00:04:41,240
+information, which was also helpful in a general summary, but less specific to the shipping
+
+57
+00:04:41,240 --> 00:04:45,000
+department if all it wants to know is what happened with the shipping
+
+58
+00:04:45,000 --> 00:04:50,600
+Lastly, let me just share with you a concrete example for how to use this in a workflow
+
+59
+00:04:50,600 --> 00:04:56,760
+to help summarize multiple reviews to make them easier to read
+
+60
+00:04:56,760 --> 00:04:59,920
+So here are a few reviews
+
+61
+00:04:59,920 --> 00:05:03,920
+This is kind of long, but here's a second review for a standing lamp
+
+62
+00:05:03,920 --> 00:05:04,920
+need a lamp on a bedroom
+
+63
+00:05:04,920 --> 00:05:07,280
+Here's a third review for an electric toothbrush
+
+64
+00:05:07,280 --> 00:05:09,600
+My dental hygienist recommended
+
+65
+00:05:09,600 --> 00:05:12,640
+Kind of a long review about the electric toothbrush
+
+66
+00:05:12,640 --> 00:05:17,920
+This is a review for a blender when it said, so said 17 piece system on seasonal sale and
+
+67
+00:05:17,920 --> 00:05:18,920
+so on and so on
+
+68
+00:05:18,920 --> 00:05:20,280
+This is actually a lot of text
+
+69
+00:05:20,280 --> 00:05:23,280
+If you want, feel free to pause the video and read through all this text
+
+70
+00:05:23,280 --> 00:05:28,480
+But what if you want to know what these reviewers wrote without having to stop and read all
+
+71
+00:05:28,480 --> 00:05:29,480
+this in detail?
+
+72
+00:05:29,480 --> 00:05:41,600
+So I'm going to set review_1 to be just the product review that we had up there
+
+73
+00:05:41,600 --> 00:05:45,320
+I'm going to put all of these reviews into a list
+
+74
+00:05:45,320 --> 00:05:53,800
+And now if I implement a for loop over the reviews
+
+75
+00:05:53,800 --> 00:06:01,240
+So here's my prompt and here I've asked it to summarize it in at most 20 words
+
+76
+00:06:01,240 --> 00:06:07,320
+Then let's have it get the response and print it out
+
+77
+00:06:07,320 --> 00:06:10,760
+And let's run that
+
+78
+00:06:10,760 --> 00:06:16,360
+And it prints out the first review is that PandaToy review, summary review of the lamp
+
+79
+00:06:16,360 --> 00:06:21,880
+summary review of the toothbrush, and then the blender
+
+80
+00:06:21,880 --> 00:06:29,800
+And so if you have a website where you have hundreds of reviews, you can imagine how you
+
+81
+00:06:29,800 --> 00:06:35,360
+might use this to build a dashboard, to take huge numbers of reviews, generate short summaries
+
+82
+00:06:35,360 --> 00:06:40,760
+of them so that you or someone else can browse the reviews much more quickly
+
+83
+00:06:40,760 --> 00:06:46,200
+And then if they wish, maybe click in to see the original longer review
+
+84
+00:06:46,200 --> 00:06:51,640
+And this can help you efficiently get a better sense of what all of your customers are thinking
+
+85
+00:06:51,640 --> 00:06:55,640
+All right, so that's it for summarizing
+
+86
+00:06:55,640 --> 00:07:00,960
+And I hope that you can picture if you have any applications with many pieces of text
+
+87
+00:07:00,960 --> 00:07:05,680
+how you can use prompts like these to summarize them to help people quickly get a sense of
+
+88
+00:07:05,680 --> 00:07:10,240
+what's in the text, the many pieces of text, and perhaps optionally dig in more
+
+89
+00:07:10,240 --> 00:07:12,520
+if they wish
+
+90
+00:07:12,520 --> 00:07:17,640
+In the next video, we'll look at another capability of large language models, which is to make
+
+91
+00:07:17,640 --> 00:07:19,880
+inferences using text
+
+92
+00:07:19,880 --> 00:07:24,280
+For example, what if you had, again, product reviews, and you wanted to very quickly get
+
+93
+00:07:24,280 --> 00:07:29,680
+a sense of which product reviews have a positive or a negative sentiment?
+
+94
+00:07:29,680 --> 00:07:49,840
+Let's take a look at how to do that in the next video
+
