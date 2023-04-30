@@ -4,7 +4,7 @@
 
 该项目主要用于存放《面向开发者的 ChatGPT 提示词工程》非官方版中英双语字幕。
 
-- **中文视频地址：[面向开发者的 ChatGPT 提示词工程](https://www.bilibili.com/list/15467823?sid=3247315)**
+- **中文视频地址：[面向开发者的 ChatGPT 提示词工程](https://www.bilibili.com/list/15467823?sid=3247315&spm_id_from=333.999.0.0&desc=1&oid=783015669&bvid=BV1s24y1F7eq)**
 - **英文原视频地址：[ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/)**
 
 如果你在观看视频的过程中，发现翻译出现错漏、错别字、病句等情况，欢迎向我们提交 Pull Request 以改进字幕翻译质量。
@@ -63,7 +63,7 @@ ChatGPT 上线至今，已经快 5 个月了，但是不少人还没真正掌握
 
 不过当下这个教程只有英文版，为了让看不懂英文的同学也能第一时间学习并掌握这项技术。
 
-我花了一天时间，完整翻译了所有英文字幕，并且将所有视频与字幕同步上传到了 B 站：[《面向开发者的 ChatGPT 提示词工程》中文教程](https://www.bilibili.com/list/15467823?sid=3247315)。
+我花了一天时间，完整翻译了所有英文字幕，并且将所有视频与字幕同步上传到了 B 站：[《面向开发者的 ChatGPT 提示词工程》中文教程](https://www.bilibili.com/list/15467823?sid=3247315&spm_id_from=333.999.0.0&desc=1&oid=783015669&bvid=BV1s24y1F7eq)。
 
 大家有时间的话，可以多学一下这个教程，相信整个学习下来，绝对能让你受益匪浅！
 
