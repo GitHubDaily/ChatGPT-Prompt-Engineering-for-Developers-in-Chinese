@@ -13,7 +13,8 @@
 
 - `subtitles`：核心字幕，里面放置了「中英双语字幕」；
 - `english_subtitles`：从双语字幕中分离出来的「英文字幕」；
-- `chinese_subtitles`：从双语字幕中分离出来的「中文字幕」。
+- `chinese_subtitles`：从双语字幕中分离出来的「中文字幕」;
+- `course_notebooks`:  从课程中复制至本地的Notebook  。
 
 字幕效果展示：
 
@@ -69,7 +70,7 @@ ChatGPT 上线至今，已经快 5 个月了，但是不少人还没真正掌握
 
 项目基于 [CC BY-NC-SA 4.0 协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 发布。
 
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+[CC BY-NC-SA 4.0][cc-by-nc-sa]
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
