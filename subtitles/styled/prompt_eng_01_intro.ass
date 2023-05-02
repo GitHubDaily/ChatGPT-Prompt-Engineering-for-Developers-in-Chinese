@@ -16,7 +16,7 @@ Scroll Position: 57
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: 蓝中字,HarmonyOS Sans SC,56,&H00FFFFFF,&H000000FF,&H0ABD631D,&H64000000,0,0,0,0,100,100,0,0,1,3,1,2,10,10,10,1
+Style: 蓝中字,FZHei-B01,60,&H00FFFFFF,&H000000FF,&H0ABD631D,&H64000000,0,0,0,0,100,100,0,0,1,3,1,2,10,10,10,1
 Style: 灰英字,Helvetica Neue,40,&H00FFFFFF,&H000000FF,&H0A3C3C3C,&H64000000,0,0,0,0,100,100,0,0,1,3,1,2,10,10,10,1
 
 [Events]
