@@ -5,7 +5,9 @@ Title: Default Aegisub file
 ScriptType: v4.00+
 WrapStyle: 0
 ScaledBorderAndShadow: yes
-YCbCr Matrix: None
+YCbCr Matrix: TV.709
+PlayResX: 1920
+PlayResY: 1080
 
 [Aegisub Project Garbage]
 Active Line: 2
