@@ -1,7 +1,7 @@
 import os
 import re
 
-subs_path = 'subtitles'
+subs_path = 'subtitles/raw'
 cn_subs_path = 'chinese_subtitles'
 en_subs_path = 'english_subtitles'
 
