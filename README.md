@@ -6,6 +6,7 @@
 
 - **中文视频地址：[面向开发者的 ChatGPT 提示词工程](https://space.bilibili.com/15467823/channel/seriesdetail?sid=3247315&ctype=0)**
 - **英文原视频地址：[ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/)**
+- **配套代码与笔记：[《ChatGPT Prompt Engineering for Developers》课程中文版 Datawhale](https://github.com/datawhalechina/prompt-engineering-for-developers)**
 
 如果你在观看视频的过程中，发现翻译出现错漏、错别字、病句等情况，欢迎向我们提交 Pull Request 以改进字幕翻译质量。
 
